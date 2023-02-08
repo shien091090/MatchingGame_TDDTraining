@@ -3,3 +3,7 @@ Temp
 Logs
 UserSettings
 MatchingGame.sln
+obj/Debug
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+.idea
