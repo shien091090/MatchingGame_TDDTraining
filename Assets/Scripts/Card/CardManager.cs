@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class CardManager
     private List<Card> cardList;
 
     public int GetTotalCoveredCardCount => cardList.Count(x => x.IsCovered);
+    public List<Card> GetAllCards => cardList;
 
     public CardManager()
     {
@@ -25,15 +27,12 @@ public class CardManager
     public void StarGame(int pairCount)
     {
         cardList = new List<Card>();
-        
+
         for (int i = 0; i < pairCount; i++)
         {
-            for (int j = 0; j < 2; j++)
-            {
-                int patternNumber = GetRandomPatternNumber();
-                Card card = new Card(patternNumber);
-                cardList.Add(card);
-            }
+            int patternNumber = GetRandomPatternNumber();
+            cardList.Add(new Card(patternNumber));
+            cardList.Add(new Card(patternNumber));
         }
     }
 }

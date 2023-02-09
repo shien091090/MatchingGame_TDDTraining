@@ -1,11 +1,11 @@
 public class Card
 {
-    private int patternNumber;
     public bool IsCovered { get; }
+    public int GetPattern { get; }
 
     public Card(int patternNumber)
     {
-        this.patternNumber = patternNumber;
+        this.GetPattern = patternNumber;
         IsCovered = true;
     }
 }
