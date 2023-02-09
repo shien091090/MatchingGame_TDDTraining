@@ -34,5 +34,22 @@ public class CardManager
             cardList.Add(new Card(patternNumber));
             cardList.Add(new Card(patternNumber));
         }
+
+        Shuffle();
+    }
+
+    private void Shuffle()
+    {
+        List<Card> tempCardList = new List<Card>();
+        tempCardList.AddRange(cardList);
+        List<Card> shuffledCards = new List<Card>();
+        while (tempCardList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, tempCardList.Count);
+            shuffledCards.Add(tempCardList[randomIndex]);
+            tempCardList.RemoveAt(randomIndex);
+        }
+
+        cardList = shuffledCards;
     }
 }
