@@ -6,16 +6,36 @@ public class MatchingGameTest
     [Test]
     [TestCase(3, 6)]
     [TestCase(7, 14)]
+    //遊戲開始, 場上有N*N覆蓋的牌, 且每種牌兩兩一組
     public void game_start_and_all_card_covered(int pairCount, int expectedCount)
     {
         CardManager cardManager = new CardManager();
         cardManager.StarGame(pairCount);
 
-        CardCountShouldBe(cardManager, expectedCount);
+        CoveredCardCountShouldBe(cardManager, expectedCount);
         AllCardsShouldBePair(cardManager);
     }
 
-    private void CardCountShouldBe(CardManager cardManager, int expectedCount)
+    [Test]
+    //場上所有牌仍是覆蓋狀態, 翻開兩張牌, 兩張牌不同
+    public void flop_two_card_and_not_same_pattern_when_all_cards_covered()
+    {
+        CardManager cardManager = new CardManager();
+        cardManager.StarGame(8, false);
+
+        FlopTwoCardResultShouldBe(cardManager, 0, 2, MatchType.NotMatch);
+        CoveredCardCountShouldBe(cardManager, 16);
+    }
+
+    private void FlopTwoCardResultShouldBe(CardManager cardManager, int card1Number, int card2Number, MatchType expectedMatchType)
+    {
+        cardManager.Flop(card1Number, out MatchType matchResultType);
+        Assert.AreEqual(MatchType.None, matchResultType);
+        cardManager.Flop(card2Number, out matchResultType);
+        Assert.AreEqual(expectedMatchType, matchResultType);
+    }
+
+    private void CoveredCardCountShouldBe(CardManager cardManager, int expectedCount)
     {
         Assert.AreEqual(expectedCount, cardManager.GetTotalCoveredCardCount);
     }

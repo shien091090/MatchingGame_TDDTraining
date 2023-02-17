@@ -1,11 +1,23 @@
 public class Card
 {
-    public bool IsCovered { get; }
+    public int number;
+    public bool IsCovered { get; private set; }
     public int GetPattern { get; }
 
-    public Card(int patternNumber)
+    public Card(int patternNumber, int number)
     {
-        this.GetPattern = patternNumber;
+        GetPattern = patternNumber;
+        this.number = number;
+        IsCovered = true;
+    }
+
+    public void Flap()
+    {
+        IsCovered = false;
+    }
+
+    public void Cover()
+    {
         IsCovered = true;
     }
 }

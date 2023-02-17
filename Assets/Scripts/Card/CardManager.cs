@@ -7,6 +7,7 @@ public class CardManager
 {
     private List<int> patternPool;
     private List<Card> cardList;
+    private List<Card> floppingCards = new List<Card>();
 
     public int GetTotalCoveredCardCount => cardList.Count(x => x.IsCovered);
     public List<Card> GetAllCards => cardList;
@@ -24,18 +25,23 @@ public class CardManager
         return patternNumber;
     }
 
-    public void StarGame(int pairCount)
+    public void StarGame(int pairCount, bool useShuffle = true)
     {
         cardList = new List<Card>();
 
+        int number = 0;
         for (int i = 0; i < pairCount; i++)
         {
             int patternNumber = GetRandomPatternNumber();
-            cardList.Add(new Card(patternNumber));
-            cardList.Add(new Card(patternNumber));
+            for (int j = 0; j < 2; j++)
+            {
+                cardList.Add(new Card(patternNumber, number));
+                number++;
+            }
         }
 
-        Shuffle();
+        if (useShuffle)
+            Shuffle();
     }
 
     private void Shuffle()
@@ -52,4 +58,42 @@ public class CardManager
 
         cardList = shuffledCards;
     }
+
+    public void Flop(int cardNumber, out MatchType matchResult)
+    {
+        matchResult = MatchType.None;
+
+        Card selectCard = cardList.FirstOrDefault(x => x.number == cardNumber);
+        if (selectCard == null || selectCard.IsCovered == false)
+            return;
+
+        if (floppingCards.FirstOrDefault(x => x.number == selectCard.number) != null)
+            return;
+
+        selectCard.Flap();
+        floppingCards.Add(selectCard);
+
+        if (floppingCards.Count == 2)
+        {
+            int card1Pattern = floppingCards[0].GetPattern;
+            int card2Pattern = floppingCards[1].GetPattern;
+            if (card1Pattern != card2Pattern)
+            {
+                foreach (Card floppingCard in floppingCards)
+                {
+                    floppingCard.Cover();
+                }
+            }
+
+            floppingCards = new List<Card>();
+            matchResult = card1Pattern == card2Pattern ? MatchType.Match : MatchType.NotMatch;
+        }
+    }
+}
+
+public enum MatchType
+{
+    None,
+    Match,
+    NotMatch
 }
