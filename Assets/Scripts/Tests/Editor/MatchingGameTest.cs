@@ -78,6 +78,28 @@ namespace GameCore
             CurrentPointShouldBe(pointManager, expectedFinalFailedPoint);
         }
 
+        [Test]
+        [TestCase(3, 2, 5)]
+        [TestCase(4, 5, 4)]
+        //成功和失敗交叉發生, 計算積分
+        public void success_and_fail_occur_alternately_then_calculate_point(int successIncreasePoint, int failPointDamage, int expectedFinalPoint)
+        {
+            PointManager pointManager = new PointManager(successIncreasePoint, failPointDamage);
+            CardManager cardManager = new CardManager(pointManager);
+            cardManager.StarGame(6, false);
+
+            CurrentPointShouldBe(pointManager, 0);
+
+            FlopTwoCardResultShouldBe(cardManager, 6, 8, MatchType.NotMatch);
+            FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
+            FlopTwoCardResultShouldBe(cardManager, 6, 8, MatchType.NotMatch);
+            FlopTwoCardResultShouldBe(cardManager, 2, 3, MatchType.Match);
+            FlopTwoCardResultShouldBe(cardManager, 6, 8, MatchType.NotMatch);
+            FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.Match);
+
+            CurrentPointShouldBe(pointManager, expectedFinalPoint);
+        }
+
         private void CurrentPointShouldBe(PointManager pointManager, int expectedCurrentPoint)
         {
             Assert.AreEqual(expectedCurrentPoint, pointManager.GetPoint);
