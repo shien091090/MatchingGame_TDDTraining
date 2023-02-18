@@ -27,6 +27,17 @@ public class MatchingGameTest
         CoveredCardCountShouldBe(cardManager, 16);
     }
 
+    [Test]
+    //場上所有牌仍是覆蓋狀態, 翻開兩張牌, 兩張牌相同
+    public void flop_two_card_and_same_pattern_when_all_cards_covered()
+    {
+        CardManager cardManager = new CardManager();
+        cardManager.StarGame(4, false);
+
+        FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.Match);
+        CoveredCardCountShouldBe(cardManager, 6);
+    }
+
     private void FlopTwoCardResultShouldBe(CardManager cardManager, int card1Number, int card2Number, MatchType expectedMatchType)
     {
         cardManager.Flop(card1Number, out MatchType matchResultType);
