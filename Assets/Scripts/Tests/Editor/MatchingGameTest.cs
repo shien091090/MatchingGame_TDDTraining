@@ -44,37 +44,43 @@ namespace GameCore
         //遊戲開始, 尚未掀牌, 積分為0
         public void start_game_and_point_is_zero()
         {
-            CardManager cardManager = new CardManager();
+            PointManager pointManager = new PointManager();
+            CardManager cardManager = new CardManager(pointManager);
             cardManager.StarGame(4, false);
 
-            PointManager pointManager = new PointManager();
-            Assert.AreEqual(0, pointManager.GetPoint);
+            CurrentPointShouldBe(pointManager, 0);
         }
 
         [Test]
-        [TestCase(3,2,9,3)]
-        [TestCase(2,3,6,0)]
-        [TestCase(4,0,12,12)]
+        [TestCase(3, 2, 9, 3)]
+        [TestCase(2, 3, 6, 0)]
+        [TestCase(4, 0, 12, 12)]
         //連續成功N次, 再連續失敗N次, 計算積分
-        public void continuously_succeed_many_times_then_fail_many_times_then_calculate_point(int successIncreasePoint, int failPointDamage, int expectedFinalSucceedPoint, int expectedFinalFailedPoint)
+        public void continuously_succeed_many_times_then_fail_many_times_then_calculate_point(int successIncreasePoint, int failPointDamage,
+            int expectedFinalSucceedPoint, int expectedFinalFailedPoint)
         {
             PointManager pointManager = new PointManager(successIncreasePoint, failPointDamage);
             CardManager cardManager = new CardManager(pointManager);
             cardManager.StarGame(6, false);
 
-            Assert.AreEqual(0, pointManager.GetPoint);
+            CurrentPointShouldBe(pointManager, 0);
 
             FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
             FlopTwoCardResultShouldBe(cardManager, 2, 3, MatchType.Match);
             FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.Match);
 
-            Assert.AreEqual(expectedFinalSucceedPoint, pointManager.GetPoint);
+            CurrentPointShouldBe(pointManager, expectedFinalSucceedPoint);
 
             FlopTwoCardResultShouldBe(cardManager, 6, 8, MatchType.NotMatch);
             FlopTwoCardResultShouldBe(cardManager, 6, 8, MatchType.NotMatch);
             FlopTwoCardResultShouldBe(cardManager, 6, 8, MatchType.NotMatch);
 
-            Assert.AreEqual(expectedFinalFailedPoint, pointManager.GetPoint);
+            CurrentPointShouldBe(pointManager, expectedFinalFailedPoint);
+        }
+
+        private void CurrentPointShouldBe(PointManager pointManager, int expectedCurrentPoint)
+        {
+            Assert.AreEqual(expectedCurrentPoint, pointManager.GetPoint);
         }
 
         private void FlopTwoCardResultShouldBe(CardManager cardManager, int card1Number, int card2Number, MatchType expectedMatchType)
