@@ -38,6 +38,17 @@ public class MatchingGameTest
         CoveredCardCountShouldBe(cardManager, 6);
     }
 
+    [Test]
+    //遊戲開始, 尚未掀牌, 積分為0
+    public void start_game_and_point_is_zero()
+    {
+        CardManager cardManager = new CardManager();
+        cardManager.StarGame(4, false);
+
+        PointManager pointManager = new PointManager();
+        Assert.AreEqual(0, pointManager.GetPoint);
+    }
+
     private void FlopTwoCardResultShouldBe(CardManager cardManager, int card1Number, int card2Number, MatchType expectedMatchType)
     {
         cardManager.Flop(card1Number, out MatchType matchResultType);
