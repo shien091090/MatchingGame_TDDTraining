@@ -44,13 +44,7 @@ namespace GameCore
             matchResult = MatchType.None;
 
             Card selectCard = GetAllCards.FirstOrDefault(x => x.number == cardNumber);
-            if (selectCard == null || selectCard.IsCovered == false)
-            {
-                matchResult = MatchType.WrongSelect;
-                return;
-            }
-
-            if (floppingCards.FirstOrDefault(x => x.number == selectCard.number) != null)
+            if (IsWrongSelect(selectCard))
             {
                 matchResult = MatchType.WrongSelect;
                 return;
@@ -61,35 +55,29 @@ namespace GameCore
 
             if (floppingCards.Count == 2)
             {
-                int card1Pattern = floppingCards[0].GetPattern;
-                int card2Pattern = floppingCards[1].GetPattern;
-                if (card1Pattern != card2Pattern)
+                if (CheckFloppingCardsIsMatch())
                 {
-                    foreach (Card floppingCard in floppingCards)
-                    {
-                        floppingCard.Cover();
-                    }
+                    CoverFloppingCards();
+                    ResetFloppingCards();
+                    pointManager?.SubtractPoint();
+                    matchResult = MatchType.NotMatch;
                 }
-
-                floppingCards = new List<Card>();
-                matchResult = card1Pattern == card2Pattern ? MatchType.Match : MatchType.NotMatch;
-
-                if (pointManager == null)
-                    return;
-
-                switch (matchResult)
+                else
                 {
-                    case MatchType.Match:
-                        pointManager.AddPoint();
-                        break;
-
-                    case MatchType.NotMatch:
-                        pointManager.SubtractPoint();
-                        break;
+                    ResetFloppingCards();
+                    pointManager?.AddPoint();
+                    matchResult = GetTotalCoveredCardCount == 0 ? MatchType.MatchAndGameFinish : MatchType.Match;
                 }
             }
             else
                 matchResult = MatchType.WaitForNextCard;
+        }
+
+        private bool IsWrongSelect(Card selectCard)
+        {
+            return selectCard == null ||
+                   selectCard.IsCovered == false ||
+                   floppingCards.FirstOrDefault(x => x.number == selectCard.number) != null;
         }
 
         private int GetRandomPatternNumber()
@@ -98,6 +86,26 @@ namespace GameCore
             int patternNumber = patternPool[randomIndex];
             patternPool.RemoveAt(randomIndex);
             return patternNumber;
+        }
+
+        private bool CheckFloppingCardsIsMatch()
+        {
+            int card1Pattern = floppingCards[0].GetPattern;
+            int card2Pattern = floppingCards[1].GetPattern;
+            return card1Pattern != card2Pattern;
+        }
+
+        private void ResetFloppingCards()
+        {
+            floppingCards = new List<Card>();
+        }
+
+        private void CoverFloppingCards()
+        {
+            foreach (Card floppingCard in floppingCards)
+            {
+                floppingCard.Cover();
+            }
         }
 
         private void Shuffle()

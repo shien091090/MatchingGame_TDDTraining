@@ -115,6 +115,18 @@ namespace GameCore
             FlopCardShouldBeWrong(cardManager, 4);
         }
 
+        [Test]
+        //場上剩下最後兩張牌, 翻開兩張牌, 遊戲結束
+        public void flop_last_two_covered_card_then_game_finish()
+        {
+            CardManager cardManager = new CardManager();
+            cardManager.StarGame(3, false);
+
+            FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
+            FlopTwoCardResultShouldBe(cardManager, 2, 3, MatchType.Match);
+            FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.MatchAndGameFinish);
+        }
+
         private void FlopCardShouldBeFirst(CardManager cardManager, int cardNumber)
         {
             cardManager.Flop(cardNumber, out MatchType matchResultType);
