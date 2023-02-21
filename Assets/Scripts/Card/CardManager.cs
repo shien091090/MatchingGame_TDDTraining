@@ -88,6 +88,8 @@ namespace GameCore
                         break;
                 }
             }
+            else
+                matchResult = MatchType.WaitForNextCard;
         }
 
         private int GetRandomPatternNumber()

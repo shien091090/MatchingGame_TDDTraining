@@ -118,7 +118,7 @@ namespace GameCore
         private void FlopCardShouldBeFirst(CardManager cardManager, int cardNumber)
         {
             cardManager.Flop(cardNumber, out MatchType matchResultType);
-            Assert.AreEqual(MatchType.None, matchResultType);
+            Assert.AreEqual(MatchType.WaitForNextCard, matchResultType);
         }
 
         private void FlopCardShouldBeWrong(CardManager cardManager, int cardNumber)
@@ -135,7 +135,7 @@ namespace GameCore
         private void FlopTwoCardResultShouldBe(CardManager cardManager, int card1Number, int card2Number, MatchType expectedMatchType)
         {
             cardManager.Flop(card1Number, out MatchType matchResultType);
-            Assert.AreEqual(MatchType.None, matchResultType);
+            Assert.AreEqual(MatchType.WaitForNextCard, matchResultType);
             cardManager.Flop(card2Number, out matchResultType);
             Assert.AreEqual(expectedMatchType, matchResultType);
         }

@@ -5,6 +5,7 @@ namespace GameCore
         None,
         Match,
         NotMatch,
-        WrongSelect
+        WrongSelect,
+        WaitForNextCard
     }
 }
