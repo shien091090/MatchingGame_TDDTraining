@@ -100,6 +100,25 @@ namespace GameCore
             CurrentPointShouldBe(pointManager, expectedFinalPoint);
         }
 
+        [Test]
+        //選擇已掀開的牌
+        public void select_card_that_has_been_revealed()
+        {
+            CardManager cardManager = new CardManager();
+            cardManager.StarGame(5, false);
+
+            FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
+            FlopTwoCardResultShouldBe(cardManager, 2, 3, MatchType.Match);
+            cardManager.Flop(0, out MatchType matchResultType);
+            Assert.AreEqual(MatchType.WrongSelect, matchResultType);
+            cardManager.Flop(3, out matchResultType);
+            Assert.AreEqual(MatchType.WrongSelect, matchResultType);
+            cardManager.Flop(4, out matchResultType);
+            Assert.AreEqual(MatchType.None, matchResultType);
+            cardManager.Flop(4, out matchResultType);
+            Assert.AreEqual(MatchType.WrongSelect, matchResultType);
+        }
+
         private void CurrentPointShouldBe(PointManager pointManager, int expectedCurrentPoint)
         {
             Assert.AreEqual(expectedCurrentPoint, pointManager.GetPoint);

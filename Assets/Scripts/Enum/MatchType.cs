@@ -4,6 +4,7 @@ namespace GameCore
     {
         None,
         Match,
-        NotMatch
+        NotMatch,
+        WrongSelect
     }
 }

@@ -45,10 +45,16 @@ namespace GameCore
 
             Card selectCard = GetAllCards.FirstOrDefault(x => x.number == cardNumber);
             if (selectCard == null || selectCard.IsCovered == false)
+            {
+                matchResult = MatchType.WrongSelect;
                 return;
+            }
 
             if (floppingCards.FirstOrDefault(x => x.number == selectCard.number) != null)
+            {
+                matchResult = MatchType.WrongSelect;
                 return;
+            }
 
             selectCard.Flap();
             floppingCards.Add(selectCard);
