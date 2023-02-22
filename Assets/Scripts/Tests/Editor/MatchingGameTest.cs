@@ -101,6 +101,32 @@ namespace GameCore
         }
 
         [Test]
+        //選擇牌之後非成功或失敗的結果, 不影響積分
+        public void flop_not_account_point_card()
+        {
+            PointManager pointManager = new PointManager(5, 2);
+            CardManager cardManager = new CardManager(pointManager);
+            cardManager.StarGame(6, false);
+
+            CurrentPointShouldBe(pointManager, 0);
+
+            FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
+            CurrentPointShouldBe(pointManager, 5);
+
+            FlopCardShouldBeFirst(cardManager, 2);
+            CurrentPointShouldBe(pointManager, 5);
+
+            FlopCardShouldBeWrong(cardManager, 2);
+            CurrentPointShouldBe(pointManager, 5);
+
+            FlopCardShouldBeWrong(cardManager, 1);
+            CurrentPointShouldBe(pointManager, 5);
+
+            FlopSecondCardShouldBe(cardManager, 4, MatchType.NotMatch);
+            CurrentPointShouldBe(pointManager, 3);
+        }
+
+        [Test]
         //選擇已掀開的牌
         public void select_card_that_has_been_revealed()
         {
@@ -125,6 +151,12 @@ namespace GameCore
             FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
             FlopTwoCardResultShouldBe(cardManager, 2, 3, MatchType.Match);
             FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.MatchAndGameFinish);
+        }
+
+        private void FlopSecondCardShouldBe(CardManager cardManager, int cardNumber, MatchType expectedMatchType)
+        {
+            cardManager.Flop(cardNumber, out MatchType matchResult);
+            Assert.AreEqual(expectedMatchType, matchResult);
         }
 
         private void FlopCardShouldBeFirst(CardManager cardManager, int cardNumber)
