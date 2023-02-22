@@ -30,5 +30,10 @@ namespace GameCore
             if (GetPoint < 0)
                 GetPoint = 0;
         }
+
+        public void Reset()
+        {
+            GetPoint = 0;
+        }
     }
 }

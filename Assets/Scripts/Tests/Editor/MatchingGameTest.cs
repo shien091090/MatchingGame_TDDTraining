@@ -153,6 +153,22 @@ namespace GameCore
             FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.MatchAndGameFinish);
         }
 
+        [Test]
+        //遊戲結束後, 重新開始遊戲
+        public void game_complete_then_restart()
+        {
+            PointManager pointManager = new PointManager(2, 1);
+            CardManager cardManager = new CardManager(pointManager);
+            cardManager.StarGame(1, false);
+
+            FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.MatchAndGameFinish);
+            CurrentPointShouldBe(pointManager, 2);
+
+            cardManager.RestartGame();
+            CoveredCardCountShouldBe(cardManager, 2);
+            CurrentPointShouldBe(pointManager, 0);
+        }
+
         private void FlopSecondCardShouldBe(CardManager cardManager, int cardNumber, MatchType expectedMatchType)
         {
             cardManager.Flop(cardNumber, out MatchType matchResult);

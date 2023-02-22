@@ -8,8 +8,10 @@ namespace GameCore
     public class CardManager
     {
         private List<Card> floppingCards = new List<Card>();
-        private readonly List<int> patternPool;
+        private List<int> patternPool;
         private readonly PointManager pointManager;
+        private int pairCount;
+        private bool useShuffle;
 
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
@@ -17,11 +19,18 @@ namespace GameCore
         public CardManager(PointManager pointManager = null)
         {
             this.pointManager = pointManager;
+            InitPatternPool();
+        }
+
+        private void InitPatternPool()
+        {
             patternPool = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
         }
 
         public void StarGame(int pairCount, bool useShuffle = true)
         {
+            this.pairCount = pairCount;
+            this.useShuffle = useShuffle;
             GetAllCards = new List<Card>();
 
             int number = 0;
@@ -71,6 +80,13 @@ namespace GameCore
             }
             else
                 matchResult = MatchType.WaitForNextCard;
+        }
+
+        public void RestartGame()
+        {
+            InitPatternPool();
+            pointManager?.Reset();
+            StarGame(pairCount, useShuffle);
         }
 
         private bool IsWrongSelect(Card selectCard)
