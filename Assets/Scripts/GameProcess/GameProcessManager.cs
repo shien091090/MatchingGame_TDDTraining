@@ -12,6 +12,7 @@ namespace GameCore
         [Inject] private CardManager cardManager;
         [Inject] private GameSettingScriptableObject gameExternalSetting;
         [Inject] private ObjectPoolManager cardObjPool;
+        [Inject] private PatternSettingScriptableObject patternSetting;
         private List<CardView> cardList;
 
         private void Start()
@@ -31,7 +32,7 @@ namespace GameCore
             if (cardObj == null)
                 return;
 
-            cardObj.SetCardInfo(card);
+            cardObj.SetCardInfo(card, patternSetting);
             cardObj.Show();
         }
     }

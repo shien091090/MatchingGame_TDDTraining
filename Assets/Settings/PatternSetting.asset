@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4757848328b430e87c7934c425a236a, type: 3}
+  m_Name: PatternSetting
+  m_EditorClassIdentifier: 
+  patternImageSettings:
+  - patternNumber: 0
+    patternSprite: {fileID: 21300000, guid: 98fe8c2b8d3bdb841ac359fa16b8da76, type: 3}
+  - patternNumber: 1
+    patternSprite: {fileID: 21300000, guid: 9cae3fb56bab26f40b584dcf6aff83ae, type: 3}
+  - patternNumber: 2
+    patternSprite: {fileID: 21300000, guid: 9a45fa3f62c030a439eddaee4d20bec2, type: 3}
+  - patternNumber: 3
+    patternSprite: {fileID: 21300000, guid: fd3d0be27bde0d14196bd055a921a981, type: 3}
+  - patternNumber: 4
+    patternSprite: {fileID: 21300000, guid: d4a9864ce58972e468066e8a111e4677, type: 3}
+  - patternNumber: 5
+    patternSprite: {fileID: 21300000, guid: cba229dfdc667d440b22d48adc31e487, type: 3}
+  - patternNumber: 6
+    patternSprite: {fileID: 21300000, guid: 93a64c7929fd912438591e2cae44a2ec, type: 3}
+  - patternNumber: 7
+    patternSprite: {fileID: 21300000, guid: 5548aa229b2514f4788c83d985c71e9a, type: 3}
+  - patternNumber: 8
+    patternSprite: {fileID: 21300000, guid: 9d7aae250c8ed8d4db204e50329dc030, type: 3}
+  - patternNumber: 9
+    patternSprite: {fileID: 21300000, guid: aecc8d2e7ddd6f543848b4d7f8b69762, type: 3}
+  - patternNumber: 10
+    patternSprite: {fileID: 21300000, guid: 3662cff6acbafd04f9b8ae627d65b154, type: 3}
+  - patternNumber: 11
+    patternSprite: {fileID: 21300000, guid: ce6f3004cae7ba34e97b35a717317a54, type: 3}
+  - patternNumber: 12
+    patternSprite: {fileID: 21300000, guid: 479cb6a100abd7f4f8771485dc597b00, type: 3}
