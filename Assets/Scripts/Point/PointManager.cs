@@ -19,6 +19,11 @@ namespace GameCore
             successIncreasePoint = 0;
         }
 
+        public override string ToString()
+        {
+            return $"{nameof(failPointDamage)}: {failPointDamage}, {nameof(successIncreasePoint)}: {successIncreasePoint}";
+        }
+
         public void AddPoint()
         {
             GetPoint += successIncreasePoint;

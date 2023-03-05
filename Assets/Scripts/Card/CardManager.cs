@@ -1,7 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace GameCore
 {
@@ -12,7 +12,8 @@ namespace GameCore
         private readonly PointManager pointManager;
         private int pairCount;
         private bool useShuffle;
-
+        public event Action OnStartGame;
+        public bool HavePointManager => pointManager != null;
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
 
@@ -46,6 +47,8 @@ namespace GameCore
 
             if (useShuffle)
                 Shuffle();
+
+            OnStartGame?.Invoke();
         }
 
         public void Flop(int cardNumber, out MatchType matchResult)
@@ -87,6 +90,11 @@ namespace GameCore
             InitPatternPool();
             pointManager?.Reset();
             StarGame(pairCount, useShuffle);
+        }
+
+        public string PrintPointManagerInfo()
+        {
+            return pointManager.ToString();
         }
 
         private bool IsWrongSelect(Card selectCard)
