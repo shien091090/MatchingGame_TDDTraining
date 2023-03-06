@@ -1,6 +1,9 @@
+using System;
+
 public class Card
 {
     public int number;
+    public event Action<bool> OnSwitchCoverState;
     public bool IsCovered { get; private set; }
     public int GetPattern { get; }
 
@@ -14,10 +17,12 @@ public class Card
     public void Flap()
     {
         IsCovered = false;
+        OnSwitchCoverState?.Invoke(false);
     }
 
     public void Cover()
     {
         IsCovered = true;
+        OnSwitchCoverState?.Invoke(true);
     }
 }
