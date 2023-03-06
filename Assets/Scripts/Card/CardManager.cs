@@ -12,6 +12,7 @@ namespace GameCore
         private readonly PointManager pointManager;
         private int pairCount;
         private bool useShuffle;
+        public event Action<MatchType> OnFlopCard;
         public event Action OnStartGame;
         public bool HavePointManager => pointManager != null;
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
@@ -83,6 +84,8 @@ namespace GameCore
             }
             else
                 matchResult = MatchType.WaitForNextCard;
+
+            OnFlopCard?.Invoke(matchResult);
         }
 
         public void RestartGame()

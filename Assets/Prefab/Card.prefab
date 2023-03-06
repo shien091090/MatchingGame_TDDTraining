@@ -259,6 +259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img_pattern: {fileID: 4420159948417414347}
   delayCoverTimes: 0.95
+  normalFrozeTimes: 0.3
+  notMatchFrozeTimes: 2
 --- !u!114 &7437717490818063035
 MonoBehaviour:
   m_ObjectHideFlags: 0
