@@ -32,7 +32,7 @@ namespace GameCore
             if (cardObj == null)
                 return;
 
-            cardObj.SetCardInfo(card, patternSetting);
+            cardObj.SetCardInfo(card);
             cardObj.Show();
         }
     }

@@ -7,14 +7,13 @@ namespace GameCore
     public class CardView : MonoBehaviour
     {
         [SerializeField] private Image img_pattern;
+        [Inject] private CardManager cardManager;
+        [Inject] private PatternSettingScriptableObject patternSetting;
         private Card cardInfo;
-        private IPatternSetting patternSetting;
 
-        public void SetCardInfo(Card card, IPatternSetting patternSo)
+        public void SetCardInfo(Card card)
         {
             cardInfo = card;
-            patternSetting = patternSo;
-
             SetPatternImage();
         }
 
@@ -32,6 +31,10 @@ namespace GameCore
         {
             Sprite patternSprite = patternSetting.GetPatternSprite(cardInfo.GetPattern);
             img_pattern.sprite = patternSprite;
+        }
+
+        public void OnClickCard()
+        {
         }
     }
 }
