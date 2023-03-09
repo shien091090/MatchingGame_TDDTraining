@@ -14,7 +14,6 @@ namespace GameCore
         private bool useShuffle;
         public event Action<MatchType> OnFlopCard;
         public event Action OnStartGame;
-        public bool HavePointManager => pointManager != null;
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
 
@@ -49,6 +48,7 @@ namespace GameCore
             if (useShuffle)
                 Shuffle();
 
+            pointManager?.Reset();
             OnStartGame?.Invoke();
         }
 
@@ -93,11 +93,6 @@ namespace GameCore
             InitPatternPool();
             pointManager?.Reset();
             StarGame(pairCount, useShuffle);
-        }
-
-        public string PrintPointManagerInfo()
-        {
-            return pointManager.ToString();
         }
 
         private bool IsWrongSelect(Card selectCard)

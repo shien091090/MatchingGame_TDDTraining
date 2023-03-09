@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9003874616280786593}
   - component: {fileID: 9003874616280786595}
+  - component: {fileID: 2821115174201211670}
   - component: {fileID: 9003874616280786594}
   m_Layer: 0
   m_Name: PointBoard
@@ -47,6 +48,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9003874616280786592}
   m_CullTransparentMesh: 1
+--- !u!114 &2821115174201211670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003874616280786592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e65e4212d237d54c8e668f71ba70a57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp_point: {fileID: 9003874617097159823}
 --- !u!114 &9003874616280786594
 MonoBehaviour:
   m_ObjectHideFlags: 0
