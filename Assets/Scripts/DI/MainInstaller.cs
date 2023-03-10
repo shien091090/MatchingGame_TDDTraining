@@ -18,6 +18,7 @@ namespace GameCore
         public override void InstallBindings()
         {
             Container.BindInstance(patternSetting);
+            Container.Bind<IPatternSetting>().FromInstance(patternSetting);
             Container.BindInstance(objectPoolManager);
             Container.BindInstance(gameExternalSetting);
             Container.BindInstance(new PointManager(gameExternalSetting.GetSuccessIncreasePoint, gameExternalSetting.GetFailIncreasePoint));

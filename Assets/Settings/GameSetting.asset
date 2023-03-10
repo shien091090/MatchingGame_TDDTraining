@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf6a48ed01e45fd9917200fc443a8c3, type: 3}
   m_Name: GameSetting
   m_EditorClassIdentifier: 
-  successIncreasePoint: 4
+  successIncreasePoint: 10
   failIncreasePoint: 2
-  pairCount: 6
+  pairCount: 12

@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace GameCore
 {
     public class CardManager
     {
+        [Inject] private IPatternSetting patternSetting;
+        
         private List<Card> floppingCards = new List<Card>();
         private List<int> patternPool;
         private readonly PointManager pointManager;
@@ -20,16 +23,18 @@ namespace GameCore
         public CardManager(PointManager pointManager = null)
         {
             this.pointManager = pointManager;
-            InitPatternPool();
         }
 
         private void InitPatternPool()
         {
-            patternPool = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+            patternPool = new List<int>();
+            patternPool.AddRange(patternSetting.GetPatternNumberList());
         }
 
         public void StarGame(int pairCount, bool useShuffle = true)
         {
+            InitPatternPool();
+            
             this.pairCount = pairCount;
             this.useShuffle = useShuffle;
             GetAllCards = new List<Card>();

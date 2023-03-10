@@ -7,6 +7,7 @@ namespace GameCore
     public interface IPatternSetting
     {
         Sprite GetPatternSprite(int patternNumber);
+        List<int> GetPatternNumberList();
     }
 
     public class PatternSettingScriptableObject : ScriptableObject, IPatternSetting
@@ -17,6 +18,11 @@ namespace GameCore
         {
             PatternImageSetting setting = patternImageSettings.FirstOrDefault(x => x.GetPatternNumber == patternNumber);
             return setting?.GetPatternSprite;
+        }
+
+        public List<int> GetPatternNumberList()
+        {
+            return patternImageSettings.Select(x => x.GetPatternNumber).ToList();
         }
     }
 }
