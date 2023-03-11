@@ -8,8 +8,7 @@ namespace GameCore
 {
     public class CardManager
     {
-        [Inject] private IPatternSetting patternSetting;
-        
+        private IPatternSetting patternSetting;
         private List<Card> floppingCards = new List<Card>();
         private List<int> patternPool;
         private readonly PointManager pointManager;
@@ -31,10 +30,16 @@ namespace GameCore
             patternPool.AddRange(patternSetting.GetPatternNumberList());
         }
 
+        [Inject]
+        public void SetIPatternSetting(IPatternSetting patternSetting)
+        {
+            this.patternSetting = patternSetting;
+        }
+
         public void StarGame(int pairCount, bool useShuffle = true)
         {
             InitPatternPool();
-            
+
             this.pairCount = pairCount;
             this.useShuffle = useShuffle;
             GetAllCards = new List<Card>();
@@ -75,16 +80,16 @@ namespace GameCore
             {
                 if (CheckFloppingCardsIsMatch())
                 {
+                    ResetFloppingCards();
+                    pointManager?.AddPoint();
+                    matchResult = GetTotalCoveredCardCount == 0 ? MatchType.MatchAndGameFinish : MatchType.Match;
+                }
+                else
+                {
                     CoverFloppingCards();
                     ResetFloppingCards();
                     pointManager?.SubtractPoint();
                     matchResult = MatchType.NotMatch;
-                }
-                else
-                {
-                    ResetFloppingCards();
-                    pointManager?.AddPoint();
-                    matchResult = GetTotalCoveredCardCount == 0 ? MatchType.MatchAndGameFinish : MatchType.Match;
                 }
             }
             else
@@ -119,7 +124,7 @@ namespace GameCore
         {
             int card1Pattern = floppingCards[0].GetPattern;
             int card2Pattern = floppingCards[1].GetPattern;
-            return card1Pattern != card2Pattern;
+            return card1Pattern == card2Pattern;
         }
 
         private void ResetFloppingCards()
