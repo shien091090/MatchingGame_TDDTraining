@@ -4,6 +4,8 @@ public class Card
 {
     public int number;
     public event Action<bool> OnSwitchCoverState;
+    public event Action OnMatch;
+
     public bool IsCovered { get; private set; }
     public int GetPattern { get; }
 
@@ -12,6 +14,11 @@ public class Card
         GetPattern = patternNumber;
         this.number = number;
         IsCovered = true;
+    }
+
+    public void SendMatchResult()
+    {
+        OnMatch?.Invoke();
     }
 
     public void Flap()

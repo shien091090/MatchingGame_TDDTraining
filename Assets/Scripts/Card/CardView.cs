@@ -15,6 +15,7 @@ namespace GameCore
         [SerializeField] private float delayCoverTimes;
         [SerializeField] private float normalFrozeTimes;
         [SerializeField] private float notMatchFrozeTimes;
+        [SerializeField]private GameObject go_matchEffect;
         [Inject] private CardManager cardManager;
         [Inject] private PatternSettingScriptableObject patternSetting;
 
@@ -47,6 +48,8 @@ namespace GameCore
         public void SetCardInfo(Card card)
         {
             cardInfo = card;
+            go_matchEffect.SetActive(false);
+            
             SetPatternImage();
             SetEventRegister();
         }
@@ -66,14 +69,24 @@ namespace GameCore
             cardInfo.OnSwitchCoverState -= OnSwitchCoverState;
             cardInfo.OnSwitchCoverState += OnSwitchCoverState;
 
-            cardManager.OnFlopCard -= OnFrozeButton;
-            cardManager.OnFlopCard += OnFrozeButton;
+            cardInfo.OnMatch -= OnMatchAndPlayEffect;
+            cardInfo.OnMatch += OnMatchAndPlayEffect;
+
+            cardManager.OnFlopCard -= OnFlopCard;
+            cardManager.OnFlopCard += OnFlopCard;
         }
 
         private void SetPatternImage()
         {
             Sprite patternSprite = patternSetting.GetPatternSprite(cardInfo.GetPattern);
             img_pattern.sprite = patternSprite;
+        }
+
+        private IEnumerator Cor_PlayDelayMatchEffect()
+        {
+            yield return new WaitForSeconds(delayCoverTimes);
+            
+            go_matchEffect.SetActive(true);
         }
 
         private IEnumerator Cor_PlayDelayCoverAnimation()
@@ -90,12 +103,17 @@ namespace GameCore
             GetButton.enabled = true;
         }
 
-        private void OnFrozeButton(MatchType matchResult)
+        private void OnMatchAndPlayEffect()
+        {
+            StartCoroutine(Cor_PlayDelayMatchEffect());
+        }
+
+        private void OnFlopCard(MatchType matchResult)
         {
             switch (matchResult)
             {
-                case MatchType.None:
                 case MatchType.Match:
+                case MatchType.None:
                 case MatchType.MatchAndGameFinish:
                 case MatchType.WaitForNextCard:
                     StartCoroutine(Cor_FrozeButton(normalFrozeTimes));
@@ -106,7 +124,6 @@ namespace GameCore
                     break;
             }
         }
-
 
         private void OnSwitchCoverState(bool isCardCover)
         {

@@ -80,6 +80,7 @@ namespace GameCore
             {
                 if (CheckFloppingCardsIsMatch())
                 {
+                    FloppingCardsMatch();
                     ResetFloppingCards();
                     pointManager?.AddPoint();
                     matchResult = GetTotalCoveredCardCount == 0 ? MatchType.MatchAndGameFinish : MatchType.Match;
@@ -96,6 +97,14 @@ namespace GameCore
                 matchResult = MatchType.WaitForNextCard;
 
             OnFlopCard?.Invoke(matchResult);
+        }
+
+        private void FloppingCardsMatch()
+        {
+            foreach (Card matchCard in floppingCards)
+            {
+                matchCard.SendMatchResult();
+            }
         }
 
         public void RestartGame()
