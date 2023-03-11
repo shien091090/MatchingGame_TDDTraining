@@ -325,6 +325,12 @@
  <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
  <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
  </Reference>
+ <Reference Include="PackageManagerAssembly">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/UnityTechnologies/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
+ </Reference>
+ <Reference Include="Moq">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Moq/Moq.dll</HintPath>
+ </Reference>
  <Reference Include="nunit.framework">
  <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
