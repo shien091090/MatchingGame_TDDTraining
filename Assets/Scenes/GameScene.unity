@@ -384,6 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818012058}
+  - component: {fileID: 818012060}
   - component: {fileID: 818012057}
   - component: {fileID: 818012056}
   - component: {fileID: 818012059}
@@ -474,6 +475,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &818012060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818012055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2048f08d65db44ccaeaf64e9a67feb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delaySettleTimes: 2
 --- !u!224 &902419722 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 946880300095020382, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}
