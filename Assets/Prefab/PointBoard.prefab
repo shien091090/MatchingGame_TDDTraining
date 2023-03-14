@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 9003874616557323922}
   - component: {fileID: 9003874616557323921}
   m_Layer: 0
-  m_Name: Caption
+  m_Name: TMP_Caption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 9003874617097159808}
   - component: {fileID: 9003874617097159823}
   m_Layer: 0
-  m_Name: CurrentPoint
+  m_Name: TMP_CurrentPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
