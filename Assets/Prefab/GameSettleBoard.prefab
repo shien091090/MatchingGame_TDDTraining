@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 946880300342788126}
   - component: {fileID: 946880300342788127}
   - component: {fileID: 946880300342788120}
+  - component: {fileID: 3294540994890586783}
   m_Layer: 0
   m_Name: ResetButtonPanel
   m_TagString: Untagged
@@ -283,6 +284,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &3294540994890586783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946880300342788124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &946880300627435834
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946880300627435835}
   - component: {fileID: 946880300627435814}
+  - component: {fileID: 4675240935061936783}
   - component: {fileID: 946880300627435813}
   - component: {fileID: 946880300627435812}
   m_Layer: 0
@@ -330,6 +349,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946880300627435834}
   m_CullTransparentMesh: 1
+--- !u!114 &4675240935061936783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946880300627435834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22a87e95aa14dd8b50274ab05218582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &946880300627435813
 MonoBehaviour:
   m_ObjectHideFlags: 0

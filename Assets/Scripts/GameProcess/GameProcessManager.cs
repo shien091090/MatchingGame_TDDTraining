@@ -12,18 +12,18 @@ namespace GameCore
         [Inject] private CardManager cardManager;
         [Inject] private GameSettingScriptableObject gameExternalSetting;
         [Inject] private ObjectPoolManager cardObjPool;
-        [Inject] private PatternSettingScriptableObject patternSetting;
         private List<CardView> cardList;
 
         private void Start()
         {
+            SetEventRegister();
             cardManager.StarGame(gameExternalSetting.GetPairCount);
+        }
 
-            List<Card> getAllCards = cardManager.GetAllCards;
-            foreach (Card card in getAllCards)
-            {
-                SetupCardPrefab(card);
-            }
+        private void SetEventRegister()
+        {
+            cardManager.OnStartGame -= OnStartGame;
+            cardManager.OnStartGame += OnStartGame;
         }
 
         private void SetupCardPrefab(Card card)
@@ -34,6 +34,21 @@ namespace GameCore
 
             cardObj.SetCardInfo(card);
             cardObj.Show();
+        }
+
+        private void HideAllCards()
+        {
+            cardObjPool.HideAllCards(PREFAB_KEY);
+        }
+
+        private void OnStartGame()
+        {
+            HideAllCards();
+            List<Card> getAllCards = cardManager.GetAllCards;
+            foreach (Card card in getAllCards)
+            {
+                SetupCardPrefab(card);
+            }
         }
     }
 }

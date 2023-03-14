@@ -43,7 +43,7 @@ namespace GameCore
         private IEnumerator Cor_PlayGameSettleAnimation()
         {
             yield return new WaitForSeconds(delaySettleTimes);
-            
+
             GetAnimator.Play(ANIM_KEY_GAME_SETTLE, 0, 0);
         }
 
