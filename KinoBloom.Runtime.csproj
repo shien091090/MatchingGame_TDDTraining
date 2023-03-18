@@ -291,6 +291,15 @@
  <Reference Include="Zenject-usage">
  <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
  </Reference>
+ <Reference Include="log4netPlastic">
+ <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.collab-proxy@1.15.12/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+ </Reference>
+ <Reference Include="Moq">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Moq/Moq.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Plastic.Newtonsoft.Json">
  <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.collab-proxy@1.15.12/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
  </Reference>
@@ -306,20 +315,11 @@
  <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
  <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
  </Reference>
- <Reference Include="log4netPlastic">
- <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.collab-proxy@1.15.12/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
- </Reference>
- <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
- <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
- </Reference>
- <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
- <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
- </Reference>
  <Reference Include="PackageManagerAssembly">
  <HintPath>D:/UnityProject/MatchingGame/Assets/UnityTechnologies/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
  </Reference>
- <Reference Include="Moq">
- <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Moq/Moq.dll</HintPath>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/UnityHub/Editor/2020.3.30f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

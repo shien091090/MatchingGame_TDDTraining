@@ -138,10 +138,10 @@
      <Compile Include="Assets\Plugins\Zenject\Source\Injection\LazyInject.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinderBase.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Providers\Decorator\DecoratorProvider.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\IAnimatorMoveHandler.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Util\ZenjectStateMachineBehaviourAutoInjecter.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\FromBinders\FromBinderGeneric.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Install\Installer.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\IAnimatorMoveHandler.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\PlaceholderFactory.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByMethod.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Util\ZenjectException.cs" />
@@ -239,8 +239,8 @@
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\BindInfo\MemoryPoolBindInfo.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameInstaller.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\ConditionCopyNonLazyBinder.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Util\ExecutionOrderInstaller.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByInstanceGetter.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Util\ExecutionOrderInstaller.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Internal\LinqExtensions.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerFacade.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder1.cs" />
@@ -609,6 +609,15 @@
  <Reference Include="Zenject-usage">
  <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
  </Reference>
+ <Reference Include="log4netPlastic">
+ <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.collab-proxy@1.15.12/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+ </Reference>
+ <Reference Include="Moq">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Moq/Moq.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Plastic.Newtonsoft.Json">
  <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.collab-proxy@1.15.12/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
  </Reference>
@@ -624,20 +633,11 @@
  <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
  <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
  </Reference>
- <Reference Include="log4netPlastic">
- <HintPath>D:/UnityProject/MatchingGame/Library/PackageCache/com.unity.collab-proxy@1.15.12/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
- </Reference>
- <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
- <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
- </Reference>
- <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
- <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
- </Reference>
  <Reference Include="PackageManagerAssembly">
  <HintPath>D:/UnityProject/MatchingGame/Assets/UnityTechnologies/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
  </Reference>
- <Reference Include="Moq">
- <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Moq/Moq.dll</HintPath>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+ <HintPath>D:/UnityProject/MatchingGame/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/UnityHub/Editor/2020.3.30f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
