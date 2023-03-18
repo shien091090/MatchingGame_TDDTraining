@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using SNShien.Common.AudioTools;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,14 +10,16 @@ namespace GameCore
     {
         private const string ANIM_PARAM_FLOP_TO_FRONT_SIDE = "FlopToFrontSide";
         private const string ANIM_PARAM_FLOP_TO_BACK_SIDE = "FlopToBackSide";
+        private const string AUDIO_KEY_FLOP = "FlopCard";
 
         [SerializeField] private Image img_pattern;
         [SerializeField] private float delayCoverTimes;
         [SerializeField] private float normalFrozeTimes;
         [SerializeField] private float notMatchFrozeTimes;
-        [SerializeField]private GameObject go_matchEffect;
+        [SerializeField] private GameObject go_matchEffect;
         [Inject] private CardManager cardManager;
         [Inject] private PatternSettingScriptableObject patternSetting;
+        [Inject] private IAudioManager audioManager;
 
         private Card cardInfo;
         private Animator animator;
@@ -49,7 +51,7 @@ namespace GameCore
         {
             cardInfo = card;
             go_matchEffect.SetActive(false);
-            
+
             SetPatternImage();
             SetEventRegister();
         }
@@ -85,7 +87,7 @@ namespace GameCore
         private IEnumerator Cor_PlayDelayMatchEffect()
         {
             yield return new WaitForSeconds(delayCoverTimes);
-            
+
             go_matchEffect.SetActive(true);
         }
 
@@ -93,6 +95,7 @@ namespace GameCore
         {
             yield return new WaitForSeconds(delayCoverTimes);
 
+            audioManager.PlayOneShot(AUDIO_KEY_FLOP);
             GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_BACK_SIDE);
         }
 
@@ -130,7 +133,10 @@ namespace GameCore
             if (isCardCover)
                 StartCoroutine(Cor_PlayDelayCoverAnimation());
             else
+            {
+                audioManager.PlayOneShot(AUDIO_KEY_FLOP);
                 GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
+            }
         }
 
         public void OnClickCard()

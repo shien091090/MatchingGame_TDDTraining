@@ -1,3 +1,4 @@
+using SNShien.Common.AudioTools;
 using SNShien.Common.MonoBehaviorTools;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,7 @@ namespace GameCore
         [SerializeField] private GameSettingScriptableObject gameExternalSetting;
         [SerializeField] private ObjectPoolManager objectPoolManager;
         [SerializeField] private PatternSettingScriptableObject patternSetting;
+        [SerializeField] private FmodAudioCollectionScriptableObject audioCollection;
 
         public GameObject InstantiateGameObject(GameObject prefabReference, Transform parentHolder)
         {
@@ -25,6 +27,7 @@ namespace GameCore
             Container.BindInstance<IPrefabInstantiate>(this);
             objectPoolManager.SetPrefabInstantiateInterface(this);
             Container.Bind<CardManager>().AsSingle().NonLazy();
+            Container.BindInstance<IAudioManager>(new FmodAudioManager(audioCollection));
         }
     }
 }

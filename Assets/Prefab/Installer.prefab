@@ -46,3 +46,4 @@ MonoBehaviour:
   gameExternalSetting: {fileID: 11400000, guid: ea659ddfc0ab03540b444e7a82d4e082, type: 2}
   objectPoolManager: {fileID: 0}
   patternSetting: {fileID: 11400000, guid: 8a5a3635dc166124a9d5a0b7c0fcbb66, type: 2}
+  audioCollection: {fileID: 11400000, guid: 9dbeb1225b763654cadb8f55656bf40b, type: 2}
