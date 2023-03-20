@@ -488,6 +488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delaySettleTimes: 2
+  delayPlaySettleSoundTimes: 1
+  delayPlaySettleBgmTimes: 3
 --- !u!224 &902419722 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 946880300095020382, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}

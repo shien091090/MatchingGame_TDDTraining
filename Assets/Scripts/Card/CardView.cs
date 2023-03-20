@@ -10,7 +10,6 @@ namespace GameCore
     {
         private const string ANIM_PARAM_FLOP_TO_FRONT_SIDE = "FlopToFrontSide";
         private const string ANIM_PARAM_FLOP_TO_BACK_SIDE = "FlopToBackSide";
-        private const string AUDIO_KEY_FLOP = "FlopCard";
 
         [SerializeField] private Image img_pattern;
         [SerializeField] private float delayCoverTimes;
@@ -89,13 +88,14 @@ namespace GameCore
             yield return new WaitForSeconds(delayCoverTimes);
 
             go_matchEffect.SetActive(true);
+            audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_CARD_MATCH);
         }
 
         private IEnumerator Cor_PlayDelayCoverAnimation()
         {
             yield return new WaitForSeconds(delayCoverTimes);
 
-            audioManager.PlayOneShot(AUDIO_KEY_FLOP);
+            audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
             GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_BACK_SIDE);
         }
 
@@ -134,7 +134,7 @@ namespace GameCore
                 StartCoroutine(Cor_PlayDelayCoverAnimation());
             else
             {
-                audioManager.PlayOneShot(AUDIO_KEY_FLOP);
+                audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
                 GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
             }
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SNShien.Common.AudioTools;
 using SNShien.Common.MonoBehaviorTools;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace GameCore
         [Inject] private CardManager cardManager;
         [Inject] private GameSettingScriptableObject gameExternalSetting;
         [Inject] private ObjectPoolManager cardObjPool;
+        [Inject] private IAudioManager audioManager;
         private List<CardView> cardList;
 
         private void Start()
@@ -25,6 +27,7 @@ namespace GameCore
             cardManager.OnStartGame -= OnStartGame;
             cardManager.OnStartGame += OnStartGame;
         }
+
 
         private void SetupCardPrefab(Card card)
         {
@@ -44,6 +47,10 @@ namespace GameCore
         private void OnStartGame()
         {
             HideAllCards();
+
+            audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_IN_TIMES, 0);
+            audioManager.Play(AudioConstKey.AUDIO_KEY_BGM_GAME);
+
             List<Card> getAllCards = cardManager.GetAllCards;
             foreach (Card card in getAllCards)
             {

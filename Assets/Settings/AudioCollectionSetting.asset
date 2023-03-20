@@ -13,7 +13,23 @@ MonoBehaviour:
   m_Name: AudioCollectionSetting
   m_EditorClassIdentifier: 
   audioEventRefList:
-  - audioKey: FlopCard
+  - audioKey: bgm_game
+    audioEventReferences:
+    - Guid:
+        Data1: 1715793083
+        Data2: 1116826457
+        Data3: 237033621
+        Data4: 965782975
+      Path: event:/BGM_Game
+  - audioKey: bgm_settle
+    audioEventReferences:
+    - Guid:
+        Data1: -1260368089
+        Data2: 1328167572
+        Data3: 289165705
+        Data4: -929933247
+      Path: event:/BGM_Settle
+  - audioKey: flop_card
     audioEventReferences:
     - Guid:
         Data1: -1825325780
@@ -21,3 +37,19 @@ MonoBehaviour:
         Data3: 2136559491
         Data4: -1703178394
       Path: event:/FlopCard
+  - audioKey: card_match
+    audioEventReferences:
+    - Guid:
+        Data1: 1937655913
+        Data2: 1317997401
+        Data3: -1470553462
+        Data4: -1526080587
+      Path: event:/CardMatch
+  - audioKey: game_settle
+    audioEventReferences:
+    - Guid:
+        Data1: -1682563610
+        Data2: 1140689760
+        Data3: -554605633
+        Data4: 63048421
+      Path: event:/GameSettle
