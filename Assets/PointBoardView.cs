@@ -9,7 +9,7 @@ public class PointBoardView : MonoBehaviour
 
     [Inject] private PointManager pointManager;
 
-    private void Start()
+    private void Awake()
     {
         SetEventRegister();
     }

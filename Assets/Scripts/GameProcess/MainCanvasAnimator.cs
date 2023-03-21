@@ -29,11 +29,6 @@ namespace GameCore
             }
         }
 
-        private void Start()
-        {
-            SetEventRegister();
-        }
-
         private void SetEventRegister()
         {
             cardManager.OnStartGame -= OnStartGame;
@@ -43,13 +38,18 @@ namespace GameCore
             cardManager.OnFlopCard += OnFlopCard;
         }
 
+        private void Awake()
+        {
+            SetEventRegister();
+        }
+
         private IEnumerator Cor_PlayGameSettleAnimation()
         {
             yield return new WaitForSeconds(delaySettleTimes);
 
             audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_OUT_TIMES, 1);
             audioManager.Stop();
-            
+
             GetAnimator.Play(ANIM_KEY_GAME_SETTLE, 0, 0);
 
             yield return new WaitForSeconds(delayPlaySettleSoundTimes);
@@ -57,7 +57,7 @@ namespace GameCore
             audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_GAME_SETTLE);
 
             yield return new WaitForSeconds(delayPlaySettleBgmTimes);
-            
+
             audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_IN_TIMES, 3);
             audioManager.Play(AudioConstKey.AUDIO_KEY_BGM_SETTLE);
         }
