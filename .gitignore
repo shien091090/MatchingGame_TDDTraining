@@ -9,3 +9,5 @@ Assembly-CSharp.csproj
 .idea
 MatchingGame.sln.DotSettings.user
 Builds
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+fmod_editor.log
