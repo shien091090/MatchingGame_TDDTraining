@@ -1050,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSettleBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 946880300095020381, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 946880300095020382, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1133,6 +1137,10 @@ PrefabInstance:
     - target: {fileID: 946880300095020382, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294540994890586783, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}

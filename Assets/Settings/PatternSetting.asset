@@ -38,4 +38,14 @@ MonoBehaviour:
   - patternNumber: 11
     patternSprite: {fileID: 21300000, guid: ce6f3004cae7ba34e97b35a717317a54, type: 3}
   - patternNumber: 12
-    patternSprite: {fileID: 21300000, guid: 479cb6a100abd7f4f8771485dc597b00, type: 3}
+    patternSprite: {fileID: 21300000, guid: 81d417236d57ba04c8e20199d31d1bd6, type: 3}
+  - patternNumber: 13
+    patternSprite: {fileID: 21300000, guid: 6965b1ab81ef04647b94e818f272c592, type: 3}
+  - patternNumber: 14
+    patternSprite: {fileID: 21300000, guid: 8eabd28f7ff72354599c8d2d2de0f420, type: 3}
+  - patternNumber: 15
+    patternSprite: {fileID: 21300000, guid: da5fddd55deba73439e2c3c2157b0db7, type: 3}
+  - patternNumber: 16
+    patternSprite: {fileID: 21300000, guid: 5a35f06eedb9f834fa64e856e681a618, type: 3}
+  - patternNumber: 17
+    patternSprite: {fileID: 21300000, guid: 2baa1d2a4feea5e448cefe02205aea4f, type: 3}
