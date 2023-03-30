@@ -41,46 +41,60 @@ SpriteAtlas:
   - {fileID: 21300000, guid: be8224f0d39cd3143bdadd3171e8406f, type: 3}
   - {fileID: 21300000, guid: 5548aa229b2514f4788c83d985c71e9a, type: 3}
   - {fileID: 21300000, guid: fd3d0be27bde0d14196bd055a921a981, type: 3}
+  - {fileID: 21300000, guid: 81d417236d57ba04c8e20199d31d1bd6, type: 3}
   - {fileID: 21300000, guid: ce6f3004cae7ba34e97b35a717317a54, type: 3}
   - {fileID: 21300000, guid: 9d7aae250c8ed8d4db204e50329dc030, type: 3}
   - {fileID: 21300000, guid: 9cae3fb56bab26f40b584dcf6aff83ae, type: 3}
+  - {fileID: 21300000, guid: da5fddd55deba73439e2c3c2157b0db7, type: 3}
   - {fileID: 21300000, guid: 3662cff6acbafd04f9b8ae627d65b154, type: 3}
   - {fileID: 21300000, guid: ce7c59375fc312d4a97d7bb78a31d348, type: 3}
   - {fileID: 21300000, guid: bd0bdd5816e276349a77710399b37ef5, type: 3}
   - {fileID: 21300000, guid: 91d326790dfa41d48b9904b67cedf60c, type: 3}
   - {fileID: 21300000, guid: 93a64c7929fd912438591e2cae44a2ec, type: 3}
+  - {fileID: 21300000, guid: 2baa1d2a4feea5e448cefe02205aea4f, type: 3}
   - {fileID: 21300000, guid: f5a1b3ca917a0fa4cbf5695affbb95cf, type: 3}
   - {fileID: 21300000, guid: 6d438c1b0313e3142bed5d126b51a5d1, type: 3}
   - {fileID: 21300000, guid: 98fe8c2b8d3bdb841ac359fa16b8da76, type: 3}
   - {fileID: 21300000, guid: b336028b079232248828a6b706d78611, type: 3}
+  - {fileID: 21300000, guid: 6965b1ab81ef04647b94e818f272c592, type: 3}
   - {fileID: 21300000, guid: d4a9864ce58972e468066e8a111e4677, type: 3}
   - {fileID: 21300000, guid: 5275457d13ac65e47ab60412cb4ee17b, type: 3}
+  - {fileID: 21300000, guid: 84e6baed5f565d34a8bd10f8bd6e81f5, type: 3}
   - {fileID: 21300000, guid: aecc8d2e7ddd6f543848b4d7f8b69762, type: 3}
   - {fileID: 21300000, guid: a4b4f14e1cd729c48bbd0c727d752a10, type: 3}
+  - {fileID: 21300000, guid: 5a35f06eedb9f834fa64e856e681a618, type: 3}
   - {fileID: 21300000, guid: 9a45fa3f62c030a439eddaee4d20bec2, type: 3}
+  - {fileID: 21300000, guid: 8eabd28f7ff72354599c8d2d2de0f420, type: 3}
   - {fileID: 21300000, guid: cba229dfdc667d440b22d48adc31e487, type: 3}
   m_PackedSpriteNamesToIndex:
   - flat_icon_close
   - flat_icon_lock
   - icon_flower
   - icon_shovel
+  - icon_apple
   - icon_coins
   - icon_diamond
   - icon_star
+  - icon_bomb
   - icon_cup-16
   - panel_top
   - btn_+_hov
   - settings_checkbox
   - icon_heart
+  - icon_candy
   - btn_+_pressed
   - slider_pointer
   - icon_strawberry
   - store_block_pressed
+  - icon_ball
   - icon_paperclip
   - btn_+_reg
+  - icon_cherries
   - icon_cup
   - btn_big_pressed
+  - icon_button
   - icon_sword
+  - icon_balloon
   - icon_lemon
   m_RenderDataMap: {}
   m_Tag: Atlas01
