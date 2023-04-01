@@ -697,7 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: a7783fe2cb9c2ee468d3b5235d341795, type: 2}
   _monoInstallers:
   - {fileID: 350583776237365140}
   _installerPrefabs: []
@@ -931,6 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fe9eefd72032147a8d417707a8746e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardObjPool: {fileID: 174733438}
 --- !u!114 &350583776237365140 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3723426165772048915, guid: 74a43697a04e1094fa3a1d6bf770ce48, type: 3}

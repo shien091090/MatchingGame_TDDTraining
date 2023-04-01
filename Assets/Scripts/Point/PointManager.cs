@@ -11,16 +11,10 @@ namespace GameCore
 
         public int GetPoint { get; private set; }
 
-        public PointManager(int successIncreasePoint, int failPointDamage)
+        public PointManager(int successIncreasePoint = 0, int failPointDamage = 0)
         {
             this.failPointDamage = failPointDamage;
             this.successIncreasePoint = successIncreasePoint;
-        }
-
-        public PointManager()
-        {
-            failPointDamage = 0;
-            successIncreasePoint = 0;
         }
 
         public override string ToString()

@@ -1,33 +1,15 @@
-using SNShien.Common.AudioTools;
-using SNShien.Common.MonoBehaviorTools;
-using UnityEngine;
 using Zenject;
 
 namespace GameCore
 {
-    public class MainInstaller : MonoInstaller, IPrefabInstantiate
+    public class MainInstaller : MonoInstaller
     {
-        [SerializeField] private GameSettingScriptableObject gameExternalSetting;
-        [SerializeField] private ObjectPoolManager objectPoolManager;
-        [SerializeField] private PatternSettingScriptableObject patternSetting;
-        [SerializeField] private FmodAudioCollectionScriptableObject audioCollection;
-
-        public GameObject InstantiateGameObject(GameObject prefabReference, Transform parentHolder)
-        {
-            return Container.InstantiatePrefab(prefabReference, parentHolder);
-        }
+        [Inject] private GameSettingScriptableObject gameExternalSetting;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(patternSetting);
-            Container.Bind<IPatternSetting>().FromInstance(patternSetting);
-            Container.BindInstance(objectPoolManager);
-            Container.BindInstance(gameExternalSetting);
-            Container.BindInstance(new PointManager(gameExternalSetting.GetSuccessIncreasePoint, gameExternalSetting.GetFailIncreasePoint));
-            Container.BindInstance<IPrefabInstantiate>(this);
-            objectPoolManager.SetPrefabInstantiateInterface(this);
+            Container.Bind<PointManager>().AsSingle().WithArguments(gameExternalSetting.GetSuccessIncreasePoint, gameExternalSetting.GetFailIncreasePoint).NonLazy();
             Container.Bind<CardManager>().AsSingle().NonLazy();
-            Container.BindInstance<IAudioManager>(new FmodAudioManager(audioCollection));
         }
     }
 }

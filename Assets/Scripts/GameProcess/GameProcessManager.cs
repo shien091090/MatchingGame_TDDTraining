@@ -10,11 +10,10 @@ namespace GameCore
     {
         private const string PREFAB_KEY = "CardView";
 
+        [SerializeField] private ObjectPoolManager cardObjPool;
         [Inject] private CardManager cardManager;
         [Inject] private GameSettingScriptableObject gameExternalSetting;
-        [Inject] private ObjectPoolManager cardObjPool;
         [Inject] private IAudioManager audioManager;
-        private List<CardView> cardList;
 
         private void Start()
         {
@@ -27,7 +26,6 @@ namespace GameCore
             cardManager.OnStartGame -= OnStartGame;
             cardManager.OnStartGame += OnStartGame;
         }
-
 
         private void SetupCardPrefab(Card card)
         {
