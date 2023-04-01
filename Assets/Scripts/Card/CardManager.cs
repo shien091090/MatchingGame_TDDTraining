@@ -19,21 +19,16 @@ namespace GameCore
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
 
-        public CardManager(PointManager pointManager = null)
+        public CardManager(IPatternSetting patternSetting, PointManager pointManager = null)
         {
             this.pointManager = pointManager;
+            this.patternSetting = patternSetting;
         }
 
         private void InitPatternPool()
         {
             patternPool = new List<int>();
             patternPool.AddRange(patternSetting.GetPatternNumberList());
-        }
-
-        [Inject]
-        public void SetIPatternSetting(IPatternSetting patternSetting)
-        {
-            this.patternSetting = patternSetting;
         }
 
         public void StarGame(int pairCount, bool useShuffle = true)

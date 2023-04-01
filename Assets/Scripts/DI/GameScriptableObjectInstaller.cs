@@ -14,8 +14,9 @@ namespace GameCore
         {
             Container.BindInstance(gameExternalSetting);
             Container.BindInstance(patternSetting);
+            Container.BindInstance<IAudioCollection>(audioCollection);
             Container.Bind<IPatternSetting>().FromInstance(patternSetting);
-            Container.Bind<IAudioManager>().To<FmodAudioManager>().AsSingle().WithArguments(audioCollection).NonLazy();
+            Container.Bind<IAudioManager>().To<FmodAudioManager>().AsSingle();
         }
     }
 }
