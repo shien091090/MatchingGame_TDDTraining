@@ -1203,7 +1203,7 @@ PrefabInstance:
       objectReference: {fileID: 174733438}
     - target: {fileID: 3723426165772048916, guid: 74a43697a04e1094fa3a1d6bf770ce48, type: 3}
       propertyPath: m_Name
-      value: Installer
+      value: GameSceneInstaller
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74a43697a04e1094fa3a1d6bf770ce48, type: 3}

@@ -2,7 +2,7 @@ using Zenject;
 
 namespace GameCore
 {
-    public class MainInstaller : MonoInstaller
+    public class GameSceneInstaller : MonoInstaller
     {
         [Inject] private GameSettingScriptableObject gameExternalSetting;
 

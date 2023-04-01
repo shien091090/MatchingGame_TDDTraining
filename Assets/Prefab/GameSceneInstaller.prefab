@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1565888850502233870}
   - component: {fileID: 3723426165772048915}
   m_Layer: 0
-  m_Name: Installer
+  m_Name: GameSceneInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
