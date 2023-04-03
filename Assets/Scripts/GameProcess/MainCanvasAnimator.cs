@@ -1,4 +1,5 @@
 using System.Collections;
+using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
 using UnityEngine;
 using Zenject;
@@ -10,8 +11,8 @@ namespace GameCore
         private const string ANIM_KEY_GAME_START = "MainCanvas_GameStart";
         private const string ANIM_KEY_GAME_SETTLE = "MainCanvas_GameSettle";
 
-        [Inject] private CardManager cardManager;
         [Inject] private IAudioManager audioManager;
+        [Inject] private IEventRegister eventRegister;
         [SerializeField] private float delaySettleTimes;
         [SerializeField] private float delayPlaySettleSoundTimes;
         [SerializeField] private float delayPlaySettleBgmTimes;
@@ -31,11 +32,11 @@ namespace GameCore
 
         private void SetEventRegister()
         {
-            cardManager.OnStartGame -= OnStartGame;
-            cardManager.OnStartGame += OnStartGame;
+            eventRegister.Unregister<StartGameEvent>(OnStartGame);
+            eventRegister.Register<StartGameEvent>(OnStartGame);
 
-            cardManager.OnFlopCard -= OnFlopCard;
-            cardManager.OnFlopCard += OnFlopCard;
+            eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
+            eventRegister.Register<FlopCardEvent>(OnFlopCard);
         }
 
         private void Awake()
@@ -62,13 +63,13 @@ namespace GameCore
             audioManager.Play(AudioConstKey.AUDIO_KEY_BGM_SETTLE);
         }
 
-        private void OnFlopCard(MatchType matchResultType)
+        private void OnFlopCard(FlopCardEvent eventInfo)
         {
-            if (matchResultType == MatchType.MatchAndGameFinish)
+            if (eventInfo.MatchResult == MatchType.MatchAndGameFinish)
                 StartCoroutine(Cor_PlayGameSettleAnimation());
         }
 
-        private void OnStartGame()
+        private void OnStartGame(StartGameEvent eventInfo)
         {
             GetAnimator.Play(ANIM_KEY_GAME_START, 0, 0);
         }

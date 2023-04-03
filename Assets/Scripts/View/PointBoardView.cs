@@ -1,4 +1,5 @@
 using GameCore;
+using SNShien.Common.ArchitectureTools;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -7,7 +8,7 @@ public class PointBoardView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tmp_point;
 
-    [Inject] private PointManager pointManager;
+    [Inject] private IEventRegister eventRegister;
 
     private void Awake()
     {
@@ -16,11 +17,11 @@ public class PointBoardView : MonoBehaviour
 
     private void SetEventRegister()
     {
-        pointManager.OnPointChange -= OnPointChange;
-        pointManager.OnPointChange += OnPointChange;
+        eventRegister.Unregister<PointChangeEvent>(OnPointChange);
+        eventRegister.Register<PointChangeEvent>(OnPointChange);
 
-        pointManager.OnReset -= OnReset;
-        pointManager.OnReset += OnReset;
+        eventRegister.Unregister<ResetPointEvent>(OnReset);
+        eventRegister.Register<ResetPointEvent>(OnReset);
     }
 
     private void SetPoint(int currentPoint)
@@ -28,7 +29,7 @@ public class PointBoardView : MonoBehaviour
         tmp_point.text = currentPoint.ToString();
     }
 
-    private void OnReset()
+    private void OnReset(ResetPointEvent eventInfo)
     {
         SetPoint(0);
     }

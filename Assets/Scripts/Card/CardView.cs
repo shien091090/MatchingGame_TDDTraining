@@ -1,4 +1,5 @@
 using System.Collections;
+using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace GameCore
         [Inject] private CardManager cardManager;
         [Inject] private PatternSettingScriptableObject patternSetting;
         [Inject] private IAudioManager audioManager;
+        [Inject] private IEventRegister eventRegister;
 
         private Card cardInfo;
         private Animator animator;
@@ -73,8 +75,8 @@ namespace GameCore
             cardInfo.OnMatch -= OnMatchAndPlayEffect;
             cardInfo.OnMatch += OnMatchAndPlayEffect;
 
-            cardManager.OnFlopCard -= OnFlopCard;
-            cardManager.OnFlopCard += OnFlopCard;
+            eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
+            eventRegister.Register<FlopCardEvent>(OnFlopCard);
         }
 
         private void SetPatternImage()
@@ -111,9 +113,9 @@ namespace GameCore
             StartCoroutine(Cor_PlayDelayMatchEffect());
         }
 
-        private void OnFlopCard(MatchType matchResult)
+        private void OnFlopCard(FlopCardEvent eventInfo)
         {
-            switch (matchResult)
+            switch (eventInfo.MatchResult)
             {
                 case MatchType.Match:
                 case MatchType.None:

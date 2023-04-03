@@ -1,4 +1,5 @@
 using System;
+using SNShien.Common.ArchitectureTools;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,6 +9,7 @@ namespace GameCore
     public class CardHolderAutoLayout : MonoBehaviour
     {
         [Inject] private CardManager cardManager;
+        [Inject] private IEventRegister eventRegister;
         private GridLayoutGroup gridLayoutGroup;
 
         private GridLayoutGroup GetGridLayoutGroup
@@ -23,11 +25,11 @@ namespace GameCore
 
         private void Start()
         {
-            cardManager.OnStartGame -= SetupGridLayout;
-            cardManager.OnStartGame += SetupGridLayout;
+            eventRegister.Unregister<StartGameEvent>(SetupGridLayout);
+            eventRegister.Register<StartGameEvent>(SetupGridLayout);
         }
 
-        private void SetupGridLayout()
+        private void SetupGridLayout(StartGameEvent eventInfo)
         {
             int constraintCount;
             if (cardManager.GetAllCards.Count <= 7)

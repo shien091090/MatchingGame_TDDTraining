@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
 using SNShien.Common.MonoBehaviorTools;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace GameCore
         [Inject] private CardManager cardManager;
         [Inject] private GameSettingScriptableObject gameExternalSetting;
         [Inject] private IAudioManager audioManager;
+        [Inject] private IEventRegister eventRegister;
 
         private void Start()
         {
@@ -23,8 +25,8 @@ namespace GameCore
 
         private void SetEventRegister()
         {
-            cardManager.OnStartGame -= OnStartGame;
-            cardManager.OnStartGame += OnStartGame;
+            eventRegister.Unregister<StartGameEvent>(OnStartGame);
+            eventRegister.Register<StartGameEvent>(OnStartGame);
         }
 
         private void SetupCardPrefab(Card card)
@@ -42,7 +44,7 @@ namespace GameCore
             cardObjPool.HideAllCards(PREFAB_KEY);
         }
 
-        private void OnStartGame()
+        private void OnStartGame(StartGameEvent eventInfo)
         {
             HideAllCards();
 

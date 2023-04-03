@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Zenject;
+using SNShien.Common.ArchitectureTools;
 using Random = UnityEngine.Random;
 
 namespace GameCore
@@ -11,18 +11,19 @@ namespace GameCore
         private IPatternSetting patternSetting;
         private List<Card> floppingCards = new List<Card>();
         private List<int> patternPool;
-        private readonly PointManager pointManager;
         private int pairCount;
         private bool useShuffle;
-        public event Action<MatchType> OnFlopCard;
-        public event Action OnStartGame;
+        private readonly PointManager pointManager;
+        private readonly IEventInvoker eventInvoker;
+
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
 
-        public CardManager(IPatternSetting patternSetting, PointManager pointManager = null)
+        public CardManager(IPatternSetting patternSetting, IEventInvoker eventHandler, PointManager pointManager = null)
         {
             this.pointManager = pointManager;
             this.patternSetting = patternSetting;
+            eventInvoker = eventHandler;
         }
 
         private void InitPatternPool()
@@ -54,7 +55,8 @@ namespace GameCore
                 Shuffle();
 
             pointManager?.Reset();
-            OnStartGame?.Invoke();
+            eventInvoker.SendEvent<StartGameEvent>();
+            
         }
 
         public void Flop(int cardNumber, out MatchType matchResult)
@@ -91,15 +93,7 @@ namespace GameCore
             else
                 matchResult = MatchType.WaitForNextCard;
 
-            OnFlopCard?.Invoke(matchResult);
-        }
-
-        private void FloppingCardsMatch()
-        {
-            foreach (Card matchCard in floppingCards)
-            {
-                matchCard.SendMatchResult();
-            }
+            eventInvoker.SendEvent<FlopCardEvent>(matchResult);
         }
 
         public void RestartGame()
@@ -129,6 +123,14 @@ namespace GameCore
             int card1Pattern = floppingCards[0].GetPattern;
             int card2Pattern = floppingCards[1].GetPattern;
             return card1Pattern == card2Pattern;
+        }
+
+        private void FloppingCardsMatch()
+        {
+            foreach (Card matchCard in floppingCards)
+            {
+                matchCard.SendMatchResult();
+            }
         }
 
         private void ResetFloppingCards()

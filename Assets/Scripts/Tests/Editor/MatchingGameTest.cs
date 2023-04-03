@@ -1,17 +1,20 @@
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
+using SNShien.Common.ArchitectureTools;
 
 namespace GameCore
 {
     public class MatchingGameTest
     {
         private Mock<IPatternSetting> patternSettingMock;
+        private Mock<IEventInvoker> eventInvokerMock;
 
         [SetUp]
         public void Setup()
         {
             SetupPatternSettingMock();
+            SetupEventHandlerMock();
         }
 
         [Test]
@@ -20,7 +23,7 @@ namespace GameCore
         //遊戲開始, 場上有N*N覆蓋的牌, 且每種牌兩兩一組
         public void game_start_and_all_card_covered(int pairCount, int expectedCount)
         {
-            CardManager cardManager = new CardManager(patternSettingMock.Object);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object);
             cardManager.StarGame(pairCount);
 
             CoveredCardCountShouldBe(cardManager, expectedCount);
@@ -31,7 +34,7 @@ namespace GameCore
         //場上所有牌仍是覆蓋狀態, 翻開兩張牌, 兩張牌不同
         public void flop_two_card_and_not_same_pattern_when_all_cards_covered()
         {
-            CardManager cardManager = new CardManager(patternSettingMock.Object);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object);
             cardManager.StarGame(8, false);
 
             FlopTwoCardResultShouldBe(cardManager, 0, 2, MatchType.NotMatch);
@@ -42,7 +45,7 @@ namespace GameCore
         //場上所有牌仍是覆蓋狀態, 翻開兩張牌, 兩張牌相同
         public void flop_two_card_and_same_pattern_when_all_cards_covered()
         {
-            CardManager cardManager = new CardManager(patternSettingMock.Object);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object);
             cardManager.StarGame(4, false);
 
             FlopTwoCardResultShouldBe(cardManager, 4, 5, MatchType.Match);
@@ -54,7 +57,7 @@ namespace GameCore
         public void start_game_and_point_is_zero()
         {
             PointManager pointManager = new PointManager();
-            CardManager cardManager = new CardManager(patternSettingMock.Object, pointManager);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object, pointManager);
             cardManager.StarGame(4, false);
 
             CurrentPointShouldBe(pointManager, 0);
@@ -69,7 +72,7 @@ namespace GameCore
             int expectedFinalSucceedPoint, int expectedFinalFailedPoint)
         {
             PointManager pointManager = new PointManager(successIncreasePoint, failPointDamage);
-            CardManager cardManager = new CardManager(patternSettingMock.Object, pointManager);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object, pointManager);
             cardManager.StarGame(6, false);
 
             CurrentPointShouldBe(pointManager, 0);
@@ -94,7 +97,7 @@ namespace GameCore
         public void success_and_fail_occur_alternately_then_calculate_point(int successIncreasePoint, int failPointDamage, int expectedFinalPoint)
         {
             PointManager pointManager = new PointManager(successIncreasePoint, failPointDamage);
-            CardManager cardManager = new CardManager(patternSettingMock.Object, pointManager);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object, pointManager);
             cardManager.StarGame(6, false);
 
             CurrentPointShouldBe(pointManager, 0);
@@ -114,7 +117,7 @@ namespace GameCore
         public void flop_not_account_point_card()
         {
             PointManager pointManager = new PointManager(5, 2);
-            CardManager cardManager = new CardManager(patternSettingMock.Object, pointManager);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object, pointManager);
             cardManager.StarGame(6, false);
 
             CurrentPointShouldBe(pointManager, 0);
@@ -139,7 +142,7 @@ namespace GameCore
         //選擇已掀開的牌
         public void select_card_that_has_been_revealed()
         {
-            CardManager cardManager = new CardManager(patternSettingMock.Object);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object);
             cardManager.StarGame(5, false);
 
             FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
@@ -154,7 +157,7 @@ namespace GameCore
         //場上剩下最後兩張牌, 翻開兩張牌, 遊戲結束
         public void flop_last_two_covered_card_then_game_finish()
         {
-            CardManager cardManager = new CardManager(patternSettingMock.Object);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object);
             cardManager.StarGame(3, false);
 
             FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.Match);
@@ -167,7 +170,7 @@ namespace GameCore
         public void game_complete_then_restart()
         {
             PointManager pointManager = new PointManager(2, 1);
-            CardManager cardManager = new CardManager(patternSettingMock.Object, pointManager);
+            CardManager cardManager = new CardManager(patternSettingMock.Object, eventInvokerMock.Object, pointManager);
             cardManager.StarGame(1, false);
 
             FlopTwoCardResultShouldBe(cardManager, 0, 1, MatchType.MatchAndGameFinish);
@@ -229,6 +232,16 @@ namespace GameCore
             {
                 Assert.AreEqual(2, patternCount);
             }
+        }
+
+        private void SetupEventHandlerMock()
+        {
+            eventInvokerMock = new Mock<IEventInvoker>();
+            eventInvokerMock
+                .Setup(x => x.SendEvent<IArchitectureEvent>(It.IsAny<object[]>()))
+                .Callback((object[] inputParams) =>
+                {
+                });
         }
 
         private void SetupPatternSettingMock()

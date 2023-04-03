@@ -1,13 +1,14 @@
 using System;
+using SNShien.Common.ArchitectureTools;
+using Zenject;
 
 namespace GameCore
 {
     public class PointManager
     {
+        private IEventInvoker eventInvoker;
         private readonly int failPointDamage;
         private readonly int successIncreasePoint;
-        public event Action OnReset;
-        public event Action<PointChangeEvent> OnPointChange;
 
         public int GetPoint { get; private set; }
 
@@ -17,16 +18,18 @@ namespace GameCore
             this.successIncreasePoint = successIncreasePoint;
         }
 
-        public override string ToString()
+        [Inject]
+        public void Construct(IEventInvoker _eventInvoker)
         {
-            return $"{nameof(failPointDamage)}: {failPointDamage}, {nameof(successIncreasePoint)}: {successIncreasePoint}";
+            eventInvoker = _eventInvoker;
         }
 
         public void AddPoint()
         {
             GetPoint += successIncreasePoint;
-            PointChangeEvent pointChangeEvent = new PointChangeEvent(GetPoint, successIncreasePoint);
-            OnPointChange?.Invoke(pointChangeEvent);
+            // PointChangeEvent pointChangeEvent = new PointChangeEvent();
+            // OnPointChange?.Invoke(pointChangeEvent);
+            eventInvoker.SendEvent<PointChangeEvent>(GetPoint, successIncreasePoint);
         }
 
         public void SubtractPoint()
@@ -35,14 +38,13 @@ namespace GameCore
             if (GetPoint < 0)
                 GetPoint = 0;
 
-            PointChangeEvent pointChangeEvent = new PointChangeEvent(GetPoint, -failPointDamage);
-            OnPointChange?.Invoke(pointChangeEvent);
+            eventInvoker.SendEvent<PointChangeEvent>(GetPoint, -failPointDamage);
         }
 
         public void Reset()
         {
             GetPoint = 0;
-            OnReset?.Invoke();
+            eventInvoker.SendEvent<ResetPointEvent>();
         }
     }
 }

@@ -1,3 +1,4 @@
+using SNShien.Common.ArchitectureTools;
 using Zenject;
 
 namespace GameCore
@@ -8,6 +9,7 @@ namespace GameCore
 
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<ArchitectureEventHandler>().AsSingle().NonLazy();
             Container.Bind<PointManager>().AsSingle().WithArguments(gameExternalSetting.GetSuccessIncreasePoint, gameExternalSetting.GetFailIncreasePoint).NonLazy();
             Container.Bind<CardManager>().AsSingle().NonLazy();
         }
