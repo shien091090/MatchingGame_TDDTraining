@@ -29,14 +29,17 @@ namespace GameCore
             eventRegister.Register<StartGameEvent>(OnStartGame);
         }
 
-        private void SetupCardPrefab(int cardNumber, CardPresenter presenter)
+        private void SetupCardView(CardPresenter presenter)
         {
-            CardView cardObj = cardObjPool.PickUpObject<CardView>(PREFAB_KEY);
-            if (cardObj == null)
-                return;
+            foreach (Card card in cardManager.GetAllCards)
+            {
+                CardView cardObj = cardObjPool.PickUpObject<CardView>(PREFAB_KEY);
+                if (cardObj == null)
+                    continue;
 
-            cardObj.SetCardInfo(cardNumber, presenter);
-            cardObj.Show();
+                cardObj.SetCardInfo(card.number, presenter);
+                cardObj.Show();
+            }
         }
 
         private void HideAllCards()
@@ -51,15 +54,7 @@ namespace GameCore
             audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_IN_TIMES, 0);
             audioManager.Play(AudioConstKey.AUDIO_KEY_BGM_GAME);
 
-            foreach (Card card in cardManager.GetAllCards)
-            {
-                CardView cardObj = cardObjPool.PickUpObject<CardView>(PREFAB_KEY);
-                if (cardObj == null)
-                    continue;
-                
-                cardObj.SetCardInfo(card.number, eventInfo.CardPresenter);
-                cardObj.Show();
-            }
+            SetupCardView(eventInfo.CardPresenter);
         }
     }
 }
