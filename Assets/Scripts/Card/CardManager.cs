@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using SNShien.Common.ArchitectureTools;
@@ -8,14 +7,15 @@ namespace GameCore
 {
     public class CardManager
     {
-        private IPatternSetting patternSetting;
         private List<Card> floppingCards = new List<Card>();
         private List<int> patternPool;
         private int pairCount;
         private bool useShuffle;
+        private readonly IPatternSetting patternSetting;
         private readonly PointManager pointManager;
         private readonly IEventInvoker eventInvoker;
 
+        private CardPresenter cardPresenter;
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
 
@@ -55,8 +55,8 @@ namespace GameCore
                 Shuffle();
 
             pointManager?.Reset();
-            eventInvoker.SendEvent<StartGameEvent>();
-            
+            cardPresenter = new CardPresenter(GetAllCards, patternSetting);
+            eventInvoker.SendEvent(new StartGameEvent(cardPresenter));
         }
 
         public void Flop(int cardNumber, out MatchType matchResult)
@@ -70,9 +70,7 @@ namespace GameCore
                 return;
             }
 
-            selectCard.Flap();
-            floppingCards.Add(selectCard);
-
+            FlopCard(selectCard);
             if (floppingCards.Count == 2)
             {
                 if (CheckFloppingCardsIsMatch())
@@ -93,7 +91,14 @@ namespace GameCore
             else
                 matchResult = MatchType.WaitForNextCard;
 
-            eventInvoker.SendEvent<FlopCardEvent>(matchResult);
+            eventInvoker.SendEvent(new FlopCardEvent(matchResult));
+        }
+
+        private void FlopCard(Card selectCard)
+        {
+            selectCard.Flap();
+            cardPresenter.SendSwitchCardCoverStateEvent(selectCard.number, false);
+            floppingCards.Add(selectCard);
         }
 
         public void RestartGame()
@@ -127,10 +132,7 @@ namespace GameCore
 
         private void FloppingCardsMatch()
         {
-            foreach (Card matchCard in floppingCards)
-            {
-                matchCard.SendMatchResult();
-            }
+            cardPresenter.SendCardMatchEvent(floppingCards);
         }
 
         private void ResetFloppingCards()
@@ -143,6 +145,7 @@ namespace GameCore
             foreach (Card floppingCard in floppingCards)
             {
                 floppingCard.Cover();
+                cardPresenter.SendSwitchCardCoverStateEvent(floppingCard.number, true);
             }
         }
 

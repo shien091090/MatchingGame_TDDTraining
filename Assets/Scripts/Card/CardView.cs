@@ -18,13 +18,13 @@ namespace GameCore
         [SerializeField] private float notMatchFrozeTimes;
         [SerializeField] private GameObject go_matchEffect;
         [Inject] private CardManager cardManager;
-        [Inject] private PatternSettingScriptableObject patternSetting;
         [Inject] private IAudioManager audioManager;
         [Inject] private IEventRegister eventRegister;
 
-        private Card cardInfo;
+        private int cardNumber;
         private Animator animator;
         private Button button;
+        private CardPresenter cardPresenter;
 
         private Button GetButton
         {
@@ -48,13 +48,14 @@ namespace GameCore
             }
         }
 
-        public void SetCardInfo(Card card)
+        public void SetCardInfo(int cardNumber, CardPresenter presenter)
         {
-            cardInfo = card;
-            go_matchEffect.SetActive(false);
+            this.cardNumber = cardNumber;
+            cardPresenter = presenter;
 
-            SetPatternImage();
             SetEventRegister();
+            SetMatchEffectActive(false);
+            RefreshPatternImage();
         }
 
         public void Hide()
@@ -67,29 +68,30 @@ namespace GameCore
             gameObject.SetActive(true);
         }
 
+        private void SetMatchEffectActive(bool isActive)
+        {
+            go_matchEffect.SetActive(isActive);
+        }
+
         private void SetEventRegister()
         {
-            cardInfo.OnSwitchCoverState -= OnSwitchCoverState;
-            cardInfo.OnSwitchCoverState += OnSwitchCoverState;
-
-            cardInfo.OnMatch -= OnMatchAndPlayEffect;
-            cardInfo.OnMatch += OnMatchAndPlayEffect;
+            cardPresenter.RegisterEvent<SwitchCoverStateEvent>(OnSwitchCoverState);
+            cardPresenter.RegisterEvent<CardMatchEvent>(OnMatchAndPlayEffect);
 
             eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
             eventRegister.Register<FlopCardEvent>(OnFlopCard);
         }
 
-        private void SetPatternImage()
+        private void RefreshPatternImage()
         {
-            Sprite patternSprite = patternSetting.GetPatternSprite(cardInfo.GetPattern);
-            img_pattern.sprite = patternSprite;
+            img_pattern.sprite = cardPresenter.GetPatternSprite(cardNumber);
         }
 
         private IEnumerator Cor_PlayDelayMatchEffect()
         {
             yield return new WaitForSeconds(delayCoverTimes);
 
-            go_matchEffect.SetActive(true);
+            SetMatchEffectActive(true);
             audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_CARD_MATCH);
         }
 
@@ -108,9 +110,24 @@ namespace GameCore
             GetButton.enabled = true;
         }
 
-        private void OnMatchAndPlayEffect()
+        private void OnSwitchCoverState(SwitchCoverStateEvent eventInfo)
         {
-            StartCoroutine(Cor_PlayDelayMatchEffect());
+            if (eventInfo.CardNumber != cardNumber)
+                return;
+
+            if (eventInfo.IsCover)
+                StartCoroutine(Cor_PlayDelayCoverAnimation());
+            else
+            {
+                audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
+                GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
+            }
+        }
+
+        private void OnMatchAndPlayEffect(CardMatchEvent eventInfo)
+        {
+            if (eventInfo.CheckIsMatchNumber(cardNumber))
+                StartCoroutine(Cor_PlayDelayMatchEffect());
         }
 
         private void OnFlopCard(FlopCardEvent eventInfo)
@@ -130,20 +147,9 @@ namespace GameCore
             }
         }
 
-        private void OnSwitchCoverState(bool isCardCover)
-        {
-            if (isCardCover)
-                StartCoroutine(Cor_PlayDelayCoverAnimation());
-            else
-            {
-                audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
-                GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
-            }
-        }
-
         public void OnClickCard()
         {
-            cardManager.Flop(cardInfo.number, out MatchType _);
+            cardManager.Flop(cardNumber, out MatchType _);
         }
     }
 }

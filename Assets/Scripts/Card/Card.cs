@@ -1,10 +1,10 @@
-using System;
+using GameCore;
+using SNShien.Common.ArchitectureTools;
 
 public class Card
 {
-    public int number;
-    public event Action<bool> OnSwitchCoverState;
-    public event Action OnMatch;
+    private ArchitectureEventHandler eventHandler;
+    public readonly int number;
 
     public bool IsCovered { get; private set; }
     public int GetPattern { get; }
@@ -16,20 +16,13 @@ public class Card
         IsCovered = true;
     }
 
-    public void SendMatchResult()
-    {
-        OnMatch?.Invoke();
-    }
-
     public void Flap()
     {
         IsCovered = false;
-        OnSwitchCoverState?.Invoke(false);
     }
 
     public void Cover()
     {
         IsCovered = true;
-        OnSwitchCoverState?.Invoke(true);
     }
 }

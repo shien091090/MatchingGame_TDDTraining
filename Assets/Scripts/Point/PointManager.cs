@@ -27,9 +27,7 @@ namespace GameCore
         public void AddPoint()
         {
             GetPoint += successIncreasePoint;
-            // PointChangeEvent pointChangeEvent = new PointChangeEvent();
-            // OnPointChange?.Invoke(pointChangeEvent);
-            eventInvoker.SendEvent<PointChangeEvent>(GetPoint, successIncreasePoint);
+            eventInvoker.SendEvent(new PointChangeEvent(GetPoint, successIncreasePoint));
         }
 
         public void SubtractPoint()
@@ -38,13 +36,13 @@ namespace GameCore
             if (GetPoint < 0)
                 GetPoint = 0;
 
-            eventInvoker.SendEvent<PointChangeEvent>(GetPoint, -failPointDamage);
+            eventInvoker.SendEvent(new PointChangeEvent(GetPoint, -failPointDamage));
         }
 
         public void Reset()
         {
             GetPoint = 0;
-            eventInvoker.SendEvent<ResetPointEvent>();
+            eventInvoker.SendEvent(new ResetPointEvent());
         }
     }
 }
