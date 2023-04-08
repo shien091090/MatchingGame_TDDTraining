@@ -19,6 +19,8 @@ namespace GameCore
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
         public List<Card> GetAllCards { get; private set; }
 
+        public IEventRegister GetPresenterRegister => cardPresenter.GetEventRegister;
+
         public CardManager(IPatternSetting patternSetting, IEventInvoker eventHandler, PointManager pointManager = null)
         {
             this.pointManager = pointManager;
@@ -56,6 +58,7 @@ namespace GameCore
 
             pointManager?.Reset();
             cardPresenter = new CardPresenter(GetAllCards, patternSetting);
+            
             eventInvoker.SendEvent(new StartGameEvent(cardPresenter));
         }
 
@@ -94,13 +97,6 @@ namespace GameCore
             eventInvoker.SendEvent(new FlopCardEvent(matchResult));
         }
 
-        private void FlopCard(Card selectCard)
-        {
-            selectCard.Flap();
-            cardPresenter.SendSwitchCardCoverStateEvent(selectCard.number, false);
-            floppingCards.Add(selectCard);
-        }
-
         public void RestartGame()
         {
             InitPatternPool();
@@ -128,6 +124,13 @@ namespace GameCore
             int card1Pattern = floppingCards[0].GetPattern;
             int card2Pattern = floppingCards[1].GetPattern;
             return card1Pattern == card2Pattern;
+        }
+
+        private void FlopCard(Card selectCard)
+        {
+            selectCard.Flap();
+            cardPresenter.SendSwitchCardCoverStateEvent(selectCard.number, false);
+            floppingCards.Add(selectCard);
         }
 
         private void FloppingCardsMatch()

@@ -10,8 +10,9 @@ namespace GameCore
     {
         private readonly List<Card> cards;
         private IEventInvoker eventInvoker;
-        private IEventRegister eventRegister;
         private readonly IPatternSetting patternSetting;
+
+        public IEventRegister GetEventRegister { get; private set; }
 
         public CardPresenter(List<Card> allCards, IPatternSetting patternSetting)
         {
@@ -46,15 +47,15 @@ namespace GameCore
 
         public void RegisterEvent<T>(Action<T> eventAction) where T : IArchitectureEvent
         {
-            eventRegister.Unregister(eventAction);
-            eventRegister.Register(eventAction);
+            GetEventRegister.Unregister(eventAction);
+            GetEventRegister.Register(eventAction);
         }
 
         private void SetEventHandler()
         {
             ArchitectureEventHandler eventHandler = new ArchitectureEventHandler();
             eventInvoker = eventHandler;
-            eventRegister = eventHandler;
+            GetEventRegister = eventHandler;
         }
     }
 }

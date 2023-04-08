@@ -92,14 +92,14 @@ namespace GameCore
             yield return new WaitForSeconds(delayCoverTimes);
 
             SetMatchEffectActive(true);
-            audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_CARD_MATCH);
+            // audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_CARD_MATCH);
         }
 
         private IEnumerator Cor_PlayDelayCoverAnimation()
         {
             yield return new WaitForSeconds(delayCoverTimes);
 
-            audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
+            // audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
             GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_BACK_SIDE);
         }
 
@@ -118,10 +118,7 @@ namespace GameCore
             if (eventInfo.IsCover)
                 StartCoroutine(Cor_PlayDelayCoverAnimation());
             else
-            {
-                audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
                 GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
-            }
         }
 
         private void OnMatchAndPlayEffect(CardMatchEvent eventInfo)

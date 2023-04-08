@@ -15,3 +15,4 @@ MonoBehaviour:
   gameExternalSetting: {fileID: 11400000, guid: ea659ddfc0ab03540b444e7a82d4e082, type: 2}
   patternSetting: {fileID: 11400000, guid: 8a5a3635dc166124a9d5a0b7c0fcbb66, type: 2}
   audioCollection: {fileID: 11400000, guid: 9dbeb1225b763654cadb8f55656bf40b, type: 2}
+  audioTriggerEventSetting: {fileID: 11400000, guid: 129cff32b6cc81a49a4f27629acfd2dd, type: 2}

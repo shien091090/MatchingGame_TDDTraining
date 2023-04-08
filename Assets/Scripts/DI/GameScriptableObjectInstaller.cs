@@ -9,12 +9,14 @@ namespace GameCore
         [SerializeField] private GameSettingScriptableObject gameExternalSetting;
         [SerializeField] private PatternSettingScriptableObject patternSetting;
         [SerializeField] private FmodAudioCollectionScriptableObject audioCollection;
+        [SerializeField] private AudioTriggerEventScriptableObject audioTriggerEventSetting;
 
         public override void InstallBindings()
         {
             Container.BindInstance(gameExternalSetting);
             Container.BindInstance(patternSetting);
             Container.BindInstance<IAudioCollection>(audioCollection);
+            Container.BindInstance<IAudioTriggerEventSetting>(audioTriggerEventSetting);
             Container.Bind<IPatternSetting>().FromInstance(patternSetting);
             Container.Bind<IAudioManager>().To<FmodAudioManager>().AsSingle();
         }

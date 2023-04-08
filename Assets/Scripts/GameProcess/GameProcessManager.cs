@@ -12,6 +12,7 @@ namespace GameCore
         private const string PREFAB_KEY = "CardView";
 
         [SerializeField] private ObjectPoolManager cardObjPool;
+        [SerializeField] private AudioControllerComponent audioController;
         [Inject] private CardManager cardManager;
         [Inject] private GameSettingScriptableObject gameExternalSetting;
         [Inject] private IAudioManager audioManager;
@@ -20,7 +21,9 @@ namespace GameCore
         private void Start()
         {
             SetEventRegister();
+            audioController.SetupRegisterAudioEvent(eventRegister);
             cardManager.StarGame(gameExternalSetting.GetPairCount);
+            audioController.SetupRegisterAudioEvent(cardManager.GetPresenterRegister);
         }
 
         private void SetEventRegister()
