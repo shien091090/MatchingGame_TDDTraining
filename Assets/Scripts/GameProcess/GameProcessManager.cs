@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
 using SNShien.Common.MonoBehaviorTools;
@@ -14,7 +15,7 @@ namespace GameCore
         [SerializeField] private ObjectPoolManager cardObjPool;
         [SerializeField] private AudioControllerComponent audioController;
         [Inject] private CardManager cardManager;
-        [Inject] private GameSettingScriptableObject gameExternalSetting;
+        [Inject] private IGameSetting gameExternalSetting;
         [Inject] private IAudioManager audioManager;
         [Inject] private IEventRegister eventRegister;
 

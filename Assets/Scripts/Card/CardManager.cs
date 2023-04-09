@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SNShien.Common.ArchitectureTools;
+using SNShien.Common.TimeTools;
 using Random = UnityEngine.Random;
 
 namespace GameCore
@@ -14,6 +15,8 @@ namespace GameCore
         private readonly IPatternSetting patternSetting;
         private readonly PointManager pointManager;
         private readonly IEventInvoker eventInvoker;
+        private readonly IGameSetting gameSetting;
+        private readonly TimeAsyncExecuter timeAsyncExecuter;
 
         private CardPresenter cardPresenter;
         public int GetTotalCoveredCardCount => GetAllCards.Count(x => x.IsCovered);
@@ -21,11 +24,14 @@ namespace GameCore
 
         public IEventRegister GetPresenterRegister => cardPresenter.GetEventRegister;
 
-        public CardManager(IPatternSetting patternSetting, IEventInvoker eventHandler, PointManager pointManager = null)
+        public CardManager(IPatternSetting patternSetting, IEventInvoker eventInvoker, IGameSetting gameSetting, TimeAsyncExecuter timeAsyncExecuter,
+            PointManager pointManager = null)
         {
             this.pointManager = pointManager;
             this.patternSetting = patternSetting;
-            eventInvoker = eventHandler;
+            this.gameSetting = gameSetting;
+            this.timeAsyncExecuter = timeAsyncExecuter;
+            this.eventInvoker = eventInvoker;
         }
 
         private void InitPatternPool()
@@ -57,8 +63,8 @@ namespace GameCore
                 Shuffle();
 
             pointManager?.Reset();
-            cardPresenter = new CardPresenter(GetAllCards, patternSetting);
-            
+            cardPresenter = new CardPresenter(GetAllCards, patternSetting, gameSetting, timeAsyncExecuter);
+
             eventInvoker.SendEvent(new StartGameEvent(cardPresenter));
         }
 
@@ -94,6 +100,7 @@ namespace GameCore
             else
                 matchResult = MatchType.WaitForNextCard;
 
+            cardPresenter.LockCardAndUnlockAfterDelay(matchResult);
             eventInvoker.SendEvent(new FlopCardEvent(matchResult));
         }
 

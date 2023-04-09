@@ -3,11 +3,11 @@ using SNShien.Common.ArchitectureTools;
 
 namespace GameCore
 {
-    public class CardMatchEvent : IArchitectureEvent
+    public class PlayCardMatchEffectEvent : IArchitectureEvent
     {
         public List<int> MatchCardNumbers { get; }
 
-        public CardMatchEvent(List<int> numbers)
+        public PlayCardMatchEffectEvent(List<int> numbers)
         {
             MatchCardNumbers = numbers;
         }

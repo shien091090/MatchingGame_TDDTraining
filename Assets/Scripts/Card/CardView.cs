@@ -1,6 +1,4 @@
 using System.Collections;
-using SNShien.Common.ArchitectureTools;
-using SNShien.Common.AudioTools;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -14,12 +12,8 @@ namespace GameCore
 
         [SerializeField] private Image img_pattern;
         [SerializeField] private float delayCoverTimes;
-        [SerializeField] private float normalFrozeTimes;
-        [SerializeField] private float notMatchFrozeTimes;
         [SerializeField] private GameObject go_matchEffect;
         [Inject] private CardManager cardManager;
-        [Inject] private IAudioManager audioManager;
-        [Inject] private IEventRegister eventRegister;
 
         private int cardNumber;
         private Animator animator;
@@ -76,23 +70,18 @@ namespace GameCore
         private void SetEventRegister()
         {
             cardPresenter.RegisterEvent<SwitchCoverStateEvent>(OnSwitchCoverState);
-            cardPresenter.RegisterEvent<CardMatchEvent>(OnMatchAndPlayEffect);
+            cardPresenter.RegisterEvent<PlayCardMatchEffectEvent>(OnMatchAndPlayEffect);
+            cardPresenter.RegisterEvent<RefreshButtonFrozeStateEvent>(OnSetButtonFroze);
+        }
 
-            eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
-            eventRegister.Register<FlopCardEvent>(OnFlopCard);
+        private void SetButtonEnable(bool isEnable)
+        {
+            GetButton.enabled = isEnable;
         }
 
         private void RefreshPatternImage()
         {
             img_pattern.sprite = cardPresenter.GetPatternSprite(cardNumber);
-        }
-
-        private IEnumerator Cor_PlayDelayMatchEffect()
-        {
-            yield return new WaitForSeconds(delayCoverTimes);
-
-            SetMatchEffectActive(true);
-            // audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_CARD_MATCH);
         }
 
         private IEnumerator Cor_PlayDelayCoverAnimation()
@@ -103,11 +92,10 @@ namespace GameCore
             GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_BACK_SIDE);
         }
 
-        private IEnumerator Cor_FrozeButton(float frozeTimes)
+        private void OnSetButtonFroze(RefreshButtonFrozeStateEvent eventInfo)
         {
-            GetButton.enabled = false;
-            yield return new WaitForSeconds(frozeTimes);
-            GetButton.enabled = true;
+            bool isEnable = eventInfo.IsFroze == false;
+            SetButtonEnable(isEnable);
         }
 
         private void OnSwitchCoverState(SwitchCoverStateEvent eventInfo)
@@ -121,27 +109,10 @@ namespace GameCore
                 GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
         }
 
-        private void OnMatchAndPlayEffect(CardMatchEvent eventInfo)
+        private void OnMatchAndPlayEffect(PlayCardMatchEffectEvent eventInfo)
         {
             if (eventInfo.CheckIsMatchNumber(cardNumber))
-                StartCoroutine(Cor_PlayDelayMatchEffect());
-        }
-
-        private void OnFlopCard(FlopCardEvent eventInfo)
-        {
-            switch (eventInfo.MatchResult)
-            {
-                case MatchType.Match:
-                case MatchType.None:
-                case MatchType.MatchAndGameFinish:
-                case MatchType.WaitForNextCard:
-                    StartCoroutine(Cor_FrozeButton(normalFrozeTimes));
-                    break;
-
-                case MatchType.NotMatch:
-                    StartCoroutine(Cor_FrozeButton(notMatchFrozeTimes));
-                    break;
-            }
+                SetMatchEffectActive(true);
         }
 
         public void OnClickCard()

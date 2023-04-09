@@ -13,10 +13,10 @@ namespace GameCore
 
         public override void InstallBindings()
         {
-            Container.BindInstance(gameExternalSetting);
             Container.BindInstance(patternSetting);
             Container.BindInstance<IAudioCollection>(audioCollection);
             Container.BindInstance<IAudioTriggerEventSetting>(audioTriggerEventSetting);
+            Container.Bind<IGameSetting>().FromInstance(gameExternalSetting);
             Container.Bind<IPatternSetting>().FromInstance(patternSetting);
             Container.Bind<IAudioManager>().To<FmodAudioManager>().AsSingle();
         }

@@ -30,7 +30,7 @@ MonoBehaviour:
         Data3: 2136559491
         Data4: -1703178394
       Path: event:/FlopCard
-  - triggerEventTypeName: FlopCardEvent
+  - triggerEventTypeName: PlayCardMatchEffectEvent
     audioEventReference:
       Guid:
         Data1: 1937655913

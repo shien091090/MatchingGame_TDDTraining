@@ -15,3 +15,6 @@ MonoBehaviour:
   successIncreasePoint: 10
   failIncreasePoint: 2
   pairCount: 2
+  cardDelayCoverTimes: 2
+  normalFrozeTimes: 0.3
+  notMatchFrozeTimes: 1.5

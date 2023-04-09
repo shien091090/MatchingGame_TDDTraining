@@ -4,12 +4,6 @@ using UnityEngine;
 
 namespace GameCore
 {
-    public interface IPatternSetting
-    {
-        Sprite GetPatternSprite(int patternNumber);
-        List<int> GetPatternNumberList();
-    }
-
     public class PatternSettingScriptableObject : ScriptableObject, IPatternSetting
     {
         [SerializeField] private List<PatternImageSetting> patternImageSettings;

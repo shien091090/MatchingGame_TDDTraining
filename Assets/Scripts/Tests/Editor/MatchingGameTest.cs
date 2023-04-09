@@ -2,14 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
-using SNShien.Common.ArchitectureTools;
 using SNShien.Common.MockTools;
+using SNShien.Common.TimeTools;
 
 namespace GameCore
 {
     public class MatchingGameTest
     {
         private Mock<IPatternSetting> patternSettingMock;
+        private Mock<IGameSetting> gameSettingMock;
         private ArchitectureEventMock gameEventMock;
         private ArchitectureEventMock presetnterEventMock;
 
@@ -17,6 +18,7 @@ namespace GameCore
         public void Setup()
         {
             SetupPatternSettingMock();
+            SetupGameSettingMock();
             gameEventMock = new ArchitectureEventMock();
         }
 
@@ -183,7 +185,13 @@ namespace GameCore
 
         private CardManager GivenCardManagerAndStartGame(int pairCount, bool useShuffle = true, PointManager pointManager = null)
         {
-            CardManager cardManager = new CardManager(patternSettingMock.Object, gameEventMock.GetEventInvoker, pointManager);
+            CardManager cardManager = new CardManager(
+                patternSettingMock.Object,
+                gameEventMock.GetEventInvoker,
+                gameSettingMock.Object,
+                new TimeAsyncExecuter(),
+                pointManager);
+            
             cardManager.StarGame(pairCount, useShuffle);
             gameEventMock.VerifyEventTriggerTimes<StartGameEvent>(1);
 
@@ -199,13 +207,19 @@ namespace GameCore
         {
             gameEventMock.ClearEventRecord<FlopCardEvent>();
             presetnterEventMock.ClearEventRecord<SwitchCoverStateEvent>();
-            presetnterEventMock.ClearEventRecord<CardMatchEvent>();
+            presetnterEventMock.ClearEventRecord<PlayCardMatchEffectEvent>();
+            presetnterEventMock.ClearEventRecord<RefreshButtonFrozeStateEvent>();
 
             cardManager.Flop(cardNumber, out MatchType matchResult);
             Assert.AreEqual(expectedMatchType, matchResult);
 
             FlopCardEvent flopCardEvent = gameEventMock.GetLastTriggerEventInfo<FlopCardEvent>();
             Assert.AreEqual(expectedMatchType, flopCardEvent.MatchResult);
+            
+            presetnterEventMock.VerifyEventTriggerTimes<RefreshButtonFrozeStateEvent>(2);
+            List<RefreshButtonFrozeStateEvent> refreshButtonFrozeStateEvents = presetnterEventMock.GetTriggerEventInfoList<RefreshButtonFrozeStateEvent>();
+            Assert.IsTrue(refreshButtonFrozeStateEvents[0].IsFroze);
+            Assert.IsFalse(refreshButtonFrozeStateEvents[1].IsFroze);
 
             List<SwitchCoverStateEvent> triggerEventInfoList;
             switch (flopCardEvent.MatchResult)
@@ -215,10 +229,10 @@ namespace GameCore
                     presetnterEventMock.VerifyEventTriggerTimes<SwitchCoverStateEvent>(1);
                     triggerEventInfoList = presetnterEventMock.GetTriggerEventInfoList<SwitchCoverStateEvent>();
                     Assert.IsNotNull(triggerEventInfoList.FirstOrDefault(x => x.CardNumber == cardNumber && x.IsCover == false));
-                    
-                    presetnterEventMock.VerifyEventTriggerTimes<CardMatchEvent>(1);
-                    CardMatchEvent cardMatchEventInfo = presetnterEventMock.GetLastTriggerEventInfo<CardMatchEvent>();
-                    Assert.IsTrue(cardMatchEventInfo.CheckIsMatchNumber(cardNumber));
+
+                    presetnterEventMock.VerifyEventTriggerTimes<PlayCardMatchEffectEvent>(1);
+                    PlayCardMatchEffectEvent playCardMatchEffectEventInfo = presetnterEventMock.GetLastTriggerEventInfo<PlayCardMatchEffectEvent>();
+                    Assert.IsTrue(playCardMatchEffectEventInfo.CheckIsMatchNumber(cardNumber));
                     break;
 
                 case MatchType.NotMatch:
@@ -234,11 +248,13 @@ namespace GameCore
         {
             gameEventMock.ClearEventRecord<FlopCardEvent>();
             presetnterEventMock.ClearEventRecord<SwitchCoverStateEvent>();
+            presetnterEventMock.ClearEventRecord<RefreshButtonFrozeStateEvent>();
 
             cardManager.Flop(cardNumber, out MatchType matchResultType);
             Assert.AreEqual(MatchType.WaitForNextCard, matchResultType);
             gameEventMock.VerifyEventTriggerTimes<FlopCardEvent>(1);
             presetnterEventMock.VerifyEventTriggerTimes<SwitchCoverStateEvent>(1);
+            presetnterEventMock.VerifyEventTriggerTimes<RefreshButtonFrozeStateEvent>(2);
 
             FlopCardEvent flopCardEvent = gameEventMock.GetLastTriggerEventInfo<FlopCardEvent>();
             Assert.AreEqual(MatchType.WaitForNextCard, flopCardEvent.MatchResult);
@@ -246,6 +262,10 @@ namespace GameCore
             SwitchCoverStateEvent lastTriggerEventInfo = presetnterEventMock.GetLastTriggerEventInfo<SwitchCoverStateEvent>();
             Assert.AreEqual(cardNumber, lastTriggerEventInfo.CardNumber);
             Assert.IsFalse(lastTriggerEventInfo.IsCover);
+
+            List<RefreshButtonFrozeStateEvent> refreshButtonFrozeStateEvents = presetnterEventMock.GetTriggerEventInfoList<RefreshButtonFrozeStateEvent>();
+            Assert.IsTrue(refreshButtonFrozeStateEvents[0].IsFroze);
+            Assert.IsFalse(refreshButtonFrozeStateEvents[1].IsFroze);
         }
 
         private void FlopCardShouldBeWrong(CardManager cardManager, int cardNumber)
@@ -287,6 +307,12 @@ namespace GameCore
             {
                 Assert.AreEqual(2, patternCount);
             }
+        }
+
+        private void SetupGameSettingMock()
+        {
+            gameSettingMock = new Mock<IGameSetting>();
+            gameSettingMock.Setup(x => x.GetCardDelayCoverTimes).Returns(1);
         }
 
         private void SetupPatternSettingMock()
