@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   audioEventCollections:
-  - triggerEventTypeName: FlopCardEvent
+  - triggerEventTypeName: SwitchCoverStateEvent
     audioEventReference:
       Guid:
         Data1: -1825325780

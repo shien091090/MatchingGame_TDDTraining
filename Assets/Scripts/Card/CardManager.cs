@@ -136,7 +136,7 @@ namespace GameCore
         private void FlopCard(Card selectCard)
         {
             selectCard.Flap();
-            cardPresenter.SendSwitchCardCoverStateEvent(selectCard.number, false);
+            cardPresenter.SendSwitchCardCoverStateEvent(selectCard.number, false, false);
             floppingCards.Add(selectCard);
         }
 
@@ -155,7 +155,7 @@ namespace GameCore
             foreach (Card floppingCard in floppingCards)
             {
                 floppingCard.Cover();
-                cardPresenter.SendSwitchCardCoverStateEvent(floppingCard.number, true);
+                cardPresenter.SendSwitchCardCoverStateEvent(floppingCard.number, true, true);
             }
         }
 

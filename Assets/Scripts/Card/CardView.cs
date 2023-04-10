@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -84,14 +83,6 @@ namespace GameCore
             img_pattern.sprite = cardPresenter.GetPatternSprite(cardNumber);
         }
 
-        private IEnumerator Cor_PlayDelayCoverAnimation()
-        {
-            yield return new WaitForSeconds(delayCoverTimes);
-
-            // audioManager.PlayOneShot(AudioConstKey.AUDIO_KEY_FLOP);
-            GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_BACK_SIDE);
-        }
-
         private void OnSetButtonFroze(RefreshButtonFrozeStateEvent eventInfo)
         {
             bool isEnable = eventInfo.IsFroze == false;
@@ -103,10 +94,9 @@ namespace GameCore
             if (eventInfo.CardNumber != cardNumber)
                 return;
 
-            if (eventInfo.IsCover)
-                StartCoroutine(Cor_PlayDelayCoverAnimation());
-            else
-                GetAnim.SetTrigger(ANIM_PARAM_FLOP_TO_FRONT_SIDE);
+            GetAnim.SetTrigger(eventInfo.IsCover ?
+                ANIM_PARAM_FLOP_TO_BACK_SIDE :
+                ANIM_PARAM_FLOP_TO_FRONT_SIDE);
         }
 
         private void OnMatchAndPlayEffect(PlayCardMatchEffectEvent eventInfo)

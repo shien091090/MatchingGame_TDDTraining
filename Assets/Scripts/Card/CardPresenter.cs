@@ -39,9 +39,17 @@ namespace GameCore
             this.eventInvoker = eventInvoker;
         }
 
-        public void SendSwitchCardCoverStateEvent(int cardNumber, bool isCover)
+        public void SendSwitchCardCoverStateEvent(int cardNumber, bool isCover, bool isDelay)
         {
-            eventInvoker.SendEvent(new SwitchCoverStateEvent(cardNumber, isCover));
+            if (isDelay)
+                timeAsyncExecuter.DelayedCall(gameSetting.GetCardDelayCoverTimes, () =>
+                {
+                    eventInvoker.SendEvent(new SwitchCoverStateEvent(cardNumber, isCover));
+                });
+            else
+            {
+                eventInvoker.SendEvent(new SwitchCoverStateEvent(cardNumber, isCover));
+            }
         }
 
         public void SendCardMatchEvent(List<Card> matchCards)
