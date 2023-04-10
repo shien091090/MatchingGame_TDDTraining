@@ -668,6 +668,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &1005410890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4675240935061936783, guid: 1a6dfbf565f48a547bdcd2415f9c98b2, type: 3}
+  m_PrefabInstance: {fileID: 946880299326982228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22a87e95aa14dd8b50274ab05218582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1341568655
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardObjPool: {fileID: 174733438}
   audioController: {fileID: 1605678143}
+  mainCanvasAnimator: {fileID: 818012060}
+  resetButton: {fileID: 1005410890}
 --- !u!114 &350583776237365140 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3723426165772048915, guid: 74a43697a04e1094fa3a1d6bf770ce48, type: 3}

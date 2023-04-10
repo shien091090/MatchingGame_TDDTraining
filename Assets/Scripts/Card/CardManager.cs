@@ -40,7 +40,7 @@ namespace GameCore
             patternPool.AddRange(patternSetting.GetPatternNumberList());
         }
 
-        public void StarGame(int pairCount, bool useShuffle = true)
+        public void StartGame(int pairCount, bool useShuffle = true)
         {
             InitPatternPool();
 
@@ -108,7 +108,7 @@ namespace GameCore
         {
             InitPatternPool();
             pointManager?.Reset();
-            StarGame(pairCount, useShuffle);
+            StartGame(pairCount, useShuffle);
         }
 
         private bool IsWrongSelect(Card selectCard)

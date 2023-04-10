@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
@@ -30,21 +31,17 @@ namespace GameCore
             }
         }
 
-        private void SetEventRegister()
+        public void PlaySettleAnimation(Action callback)
         {
-            eventRegister.Unregister<StartGameEvent>(OnStartGame);
-            eventRegister.Register<StartGameEvent>(OnStartGame);
-
-            eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
-            eventRegister.Register<FlopCardEvent>(OnFlopCard);
+            StartCoroutine(Cor_PlayGameSettleAnimation(callback));
         }
 
-        private void Awake()
+        public void PlayIdleAnimation()
         {
-            SetEventRegister();
+            GetAnimator.Play(ANIM_KEY_GAME_START, 0, 0);
         }
 
-        private IEnumerator Cor_PlayGameSettleAnimation()
+        private IEnumerator Cor_PlayGameSettleAnimation(Action callback)
         {
             yield return new WaitForSeconds(delaySettleTimes);
 
@@ -61,17 +58,8 @@ namespace GameCore
 
             audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_IN_TIMES, 3);
             audioManager.Play(AudioConstKey.AUDIO_KEY_BGM_SETTLE);
-        }
 
-        private void OnFlopCard(FlopCardEvent eventInfo)
-        {
-            if (eventInfo.MatchResult == MatchType.MatchAndGameFinish)
-                StartCoroutine(Cor_PlayGameSettleAnimation());
-        }
-
-        private void OnStartGame(StartGameEvent eventInfo)
-        {
-            GetAnimator.Play(ANIM_KEY_GAME_START, 0, 0);
+            callback?.Invoke();
         }
     }
 }

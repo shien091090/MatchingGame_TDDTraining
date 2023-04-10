@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using DG.Tweening;
 using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
 using SNShien.Common.MonoBehaviorTools;
@@ -14,6 +12,8 @@ namespace GameCore
 
         [SerializeField] private ObjectPoolManager cardObjPool;
         [SerializeField] private AudioControllerComponent audioController;
+        [SerializeField] private MainCanvasAnimator mainCanvasAnimator;
+        [SerializeField] private ResetButton resetButton;
         [Inject] private CardManager cardManager;
         [Inject] private IGameSetting gameExternalSetting;
         [Inject] private IAudioManager audioManager;
@@ -22,15 +22,23 @@ namespace GameCore
         private void Start()
         {
             SetEventRegister();
-            audioController.SetupRegisterAudioEvent(eventRegister);
-            cardManager.StarGame(gameExternalSetting.GetPairCount);
-            audioController.SetupRegisterAudioEvent(cardManager.GetPresenterRegister);
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            cardManager.StartGame(gameExternalSetting.GetPairCount);
         }
 
         private void SetEventRegister()
         {
             eventRegister.Unregister<StartGameEvent>(OnStartGame);
             eventRegister.Register<StartGameEvent>(OnStartGame);
+
+            eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
+            eventRegister.Register<FlopCardEvent>(OnFlopCard);
+
+            audioController.SetupRegisterAudioEvent(eventRegister);
         }
 
         private void SetupCardView(CardPresenter presenter)
@@ -51,8 +59,23 @@ namespace GameCore
             cardObjPool.HideAllCards(PREFAB_KEY);
         }
 
+        private void OnFlopCard(FlopCardEvent eventInfo)
+        {
+            if (eventInfo.MatchResult != MatchType.MatchAndGameFinish)
+                return;
+
+            resetButton.SetButtonEnable(false);
+            mainCanvasAnimator.PlaySettleAnimation(() =>
+            {
+                resetButton.SetButtonEnable(true);
+            });
+        }
+
         private void OnStartGame(StartGameEvent eventInfo)
         {
+            audioController.SetupRegisterAudioEvent(cardManager.GetPresenterRegister);
+            mainCanvasAnimator.PlayIdleAnimation();
+
             HideAllCards();
 
             audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_IN_TIMES, 0);

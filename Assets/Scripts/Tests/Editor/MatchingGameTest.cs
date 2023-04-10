@@ -192,7 +192,7 @@ namespace GameCore
                 new TimeAsyncExecuter(),
                 pointManager);
             
-            cardManager.StarGame(pairCount, useShuffle);
+            cardManager.StartGame(pairCount, useShuffle);
             gameEventMock.VerifyEventTriggerTimes<StartGameEvent>(1);
 
             StartGameEvent startGameEventInfo = gameEventMock.GetLastTriggerEventInfo<StartGameEvent>();

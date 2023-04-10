@@ -28,5 +28,10 @@ namespace GameCore
                 cardManager.RestartGame();
             });
         }
+
+        public void SetButtonEnable(bool isEnable)
+        {
+            GetButton.enabled = isEnable;
+        }
     }
 }
