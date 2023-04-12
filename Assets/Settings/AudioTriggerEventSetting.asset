@@ -22,7 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   audioEventCollections:
-  - triggerEventTypeName: SwitchCoverStateEvent
+  - triggerEventName: SwitchCoverStateEvent
+    actionType: 0
     audioEventReference:
       Guid:
         Data1: -1825325780
@@ -30,7 +31,9 @@ MonoBehaviour:
         Data3: 2136559491
         Data4: -1703178394
       Path: event:/FlopCard
-  - triggerEventTypeName: PlayCardMatchEffectEvent
+    trackIndex: 0
+  - triggerEventName: PlayCardMatchEffectEvent
+    actionType: 0
     audioEventReference:
       Guid:
         Data1: 1937655913
@@ -38,3 +41,4 @@ MonoBehaviour:
         Data3: -1470553462
         Data4: -1526080587
       Path: event:/CardMatch
+    trackIndex: 0

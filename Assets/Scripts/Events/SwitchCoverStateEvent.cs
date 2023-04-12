@@ -1,9 +1,12 @@
 using SNShien.Common.ArchitectureTools;
+using SNShien.Common.AudioTools;
 
 namespace GameCore
 {
-    public class SwitchCoverStateEvent : IArchitectureEvent
+    public class SwitchCoverStateEvent : IArchitectureEvent, IAudioTriggerEvent
     {
+        public string PreSetParamName { get; set; }
+        public float PreSetParamValue { get; set; }
         public bool IsCover { get; }
         public int CardNumber { get; }
 
