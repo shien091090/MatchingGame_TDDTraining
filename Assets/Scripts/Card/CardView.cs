@@ -10,7 +10,6 @@ namespace GameCore
         private const string ANIM_PARAM_FLOP_TO_BACK_SIDE = "FlopToBackSide";
 
         [SerializeField] private Image img_pattern;
-        [SerializeField] private float delayCoverTimes;
         [SerializeField] private GameObject go_matchEffect;
         [Inject] private CardManager cardManager;
 
