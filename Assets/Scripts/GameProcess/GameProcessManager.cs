@@ -11,7 +11,7 @@ namespace GameCore
         private const string PREFAB_KEY = "CardView";
 
         [SerializeField] private ObjectPoolManager cardObjPool;
-        [SerializeField] private AudioControllerComponent audioController;
+        [SerializeField] private AudioAutoTriggerComponent audioAutoTriggerComponent;
         [SerializeField] private MainCanvasAnimator mainCanvasAnimator;
         [SerializeField] private ResetButton resetButton;
         [Inject] private CardManager cardManager;
@@ -38,7 +38,7 @@ namespace GameCore
             eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
             eventRegister.Register<FlopCardEvent>(OnFlopCard);
 
-            audioController.SetupRegisterAudioEvent(eventRegister);
+            audioAutoTriggerComponent.SetupRegisterAudioEvent(eventRegister);
         }
 
         private void SetupCardView(CardPresenter presenter)
@@ -73,7 +73,7 @@ namespace GameCore
 
         private void OnStartGame(StartGameEvent eventInfo)
         {
-            audioController.SetupRegisterAudioEvent(cardManager.GetPresenterRegister);
+            audioAutoTriggerComponent.SetupRegisterAudioEvent(cardManager.GetPresenterRegister);
             mainCanvasAnimator.PlayIdleAnimation();
 
             HideAllCards();

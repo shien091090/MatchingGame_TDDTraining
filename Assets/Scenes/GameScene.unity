@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 1605678144}
   - component: {fileID: 1605678143}
   m_Layer: 0
-  m_Name: AudioEventController
+  m_Name: AudioAutoTriggerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardObjPool: {fileID: 174733438}
-  audioController: {fileID: 1605678143}
+  audioAutoTriggerComponent: {fileID: 1605678143}
   mainCanvasAnimator: {fileID: 818012060}
   resetButton: {fileID: 1005410890}
 --- !u!114 &350583776237365140 stripped
