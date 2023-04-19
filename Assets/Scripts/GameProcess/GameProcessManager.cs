@@ -1,6 +1,5 @@
 using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
-using SNShien.Common.MonoBehaviorTools;
 using UnityEngine;
 using Zenject;
 
@@ -8,19 +7,18 @@ namespace GameCore
 {
     public class GameProcessManager : MonoBehaviour
     {
-        private const string PREFAB_KEY = "CardView";
-
-        [SerializeField] private ObjectPoolManager cardObjPool;
-        [SerializeField] private AudioAutoTriggerComponent audioAutoTriggerComponent;
-        [SerializeField] private MainCanvasAnimator mainCanvasAnimator;
-        [SerializeField] private ResetButton resetButton;
+        [SerializeField] private AudioAutoTriggerComponent audioAutoTriggerControllerPrefab;
+        [SerializeField] private MatchingGameView matchingGameViewPrefab;
         [Inject] private CardManager cardManager;
         [Inject] private IGameSetting gameExternalSetting;
         [Inject] private IAudioManager audioManager;
         [Inject] private IEventRegister eventRegister;
+        private MatchingGameView matchingGameView;
+        private AudioAutoTriggerComponent audioAutoTriggerComponent;
 
         private void Start()
         {
+            InitAudioTriggerController();
             SetEventRegister();
             StartGame();
         }
@@ -30,58 +28,37 @@ namespace GameCore
             cardManager.StartGame(gameExternalSetting.GetPairCount);
         }
 
+        private void InitAudioTriggerController()
+        {
+            audioAutoTriggerComponent = Instantiate(audioAutoTriggerControllerPrefab);
+            matchingGameView = Instantiate(matchingGameViewPrefab);
+        }
+
         private void SetEventRegister()
         {
             eventRegister.Unregister<StartGameEvent>(OnStartGame);
             eventRegister.Register<StartGameEvent>(OnStartGame);
 
-            eventRegister.Unregister<FlopCardEvent>(OnFlopCard);
-            eventRegister.Register<FlopCardEvent>(OnFlopCard);
 
             audioAutoTriggerComponent.SetupRegisterAudioEvent(eventRegister);
         }
 
-        private void SetupCardView(CardPresenter presenter)
-        {
-            foreach (Card card in cardManager.GetAllCards)
-            {
-                CardView cardObj = cardObjPool.PickUpObject<CardView>(PREFAB_KEY);
-                if (cardObj == null)
-                    continue;
-
-                cardObj.SetCardInfo(card.number, presenter);
-                cardObj.Show();
-            }
-        }
-
         private void HideAllCards()
         {
-            cardObjPool.HideAllCards(PREFAB_KEY);
-        }
-
-        private void OnFlopCard(FlopCardEvent eventInfo)
-        {
-            if (eventInfo.MatchResult != MatchType.MatchAndGameFinish)
-                return;
-
-            resetButton.SetButtonEnable(false);
-            mainCanvasAnimator.PlaySettleAnimation(() =>
-            {
-                resetButton.SetButtonEnable(true);
-            });
+            matchingGameView.HideAllCards();
         }
 
         private void OnStartGame(StartGameEvent eventInfo)
         {
             audioAutoTriggerComponent.SetupRegisterAudioEvent(cardManager.GetPresenterRegister);
-            mainCanvasAnimator.PlayIdleAnimation();
+            matchingGameView.PlayIdleAnimation();
 
             HideAllCards();
 
             audioManager.SetParam(AudioConstKey.AUDIO_PARAM_FADE_IN_TIMES, 0);
             audioManager.Play(AudioConstKey.AUDIO_KEY_BGM_GAME);
 
-            SetupCardView(eventInfo.CardPresenter);
+            matchingGameView.CreateCardPrefab(eventInfo.CardPresenter);
         }
     }
 }
