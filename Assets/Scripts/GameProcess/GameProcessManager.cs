@@ -18,7 +18,7 @@ namespace GameCore
 
         private void Start()
         {
-            InitAudioTriggerController();
+            InitScene();
             SetEventRegister();
             StartGame();
         }
@@ -28,7 +28,7 @@ namespace GameCore
             cardManager.StartGame(gameExternalSetting.GetPairCount);
         }
 
-        private void InitAudioTriggerController()
+        private void InitScene()
         {
             audioAutoTriggerComponent = Instantiate(audioAutoTriggerControllerPrefab);
             matchingGameView = Instantiate(matchingGameViewPrefab);

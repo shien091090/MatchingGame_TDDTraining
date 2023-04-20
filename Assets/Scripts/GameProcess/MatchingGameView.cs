@@ -24,6 +24,18 @@ namespace GameCore
         [SerializeField] private ObjectPoolManager cardObjPool;
 
         private Animator animator;
+        private Canvas canvas;
+
+        private Canvas GetCanvas
+        {
+            get
+            {
+                if (canvas == null)
+                    canvas = GetComponent<Canvas>();
+
+                return canvas;
+            }
+        }
 
         private Animator GetAnimator
         {
@@ -38,7 +50,13 @@ namespace GameCore
 
         private void Start()
         {
+            InitCamera();
             SetEventRegister();
+        }
+
+        private void InitCamera()
+        {
+            GetCanvas.worldCamera = Camera.main;
         }
 
         public void PlayIdleAnimation()
