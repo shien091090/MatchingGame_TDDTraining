@@ -1,4 +1,5 @@
 using SNShien.Common.AudioTools;
+using SNShien.Common.ProcessTools;
 using UnityEngine;
 using Zenject;
 
@@ -10,12 +11,14 @@ namespace GameCore
         [SerializeField] private PatternSettingScriptableObject patternSetting;
         [SerializeField] private FmodAudioCollectionScriptableObject audioCollection;
         [SerializeField] private AudioTriggerEventScriptableObject audioTriggerEventSetting;
+        [SerializeField] private SceneProcessScriptableObject sceneProcessSetting;
 
         public override void InstallBindings()
         {
             Container.BindInstance(patternSetting);
             Container.BindInstance<IAudioCollection>(audioCollection);
             Container.BindInstance<IAudioTriggerEventSetting>(audioTriggerEventSetting);
+            Container.BindInstance<ISceneProcessSetting>(sceneProcessSetting);
             Container.Bind<IGameSetting>().FromInstance(gameExternalSetting);
             Container.Bind<IPatternSetting>().FromInstance(patternSetting);
             Container.Bind<IAudioManager>().To<FmodAudioManager>().AsSingle();
