@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SNShien.Common.ArchitectureTools;
+using SNShien.Common.ProcessTools;
 using SNShien.Common.TimeTools;
 using UnityEngine;
 

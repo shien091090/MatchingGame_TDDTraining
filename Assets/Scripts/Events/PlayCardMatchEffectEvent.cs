@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using SNShien.Common.ArchitectureTools;
 using SNShien.Common.AudioTools;
+using SNShien.Common.ProcessTools;
 
 namespace GameCore
 {

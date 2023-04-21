@@ -1,5 +1,4 @@
-using GameCore;
-using SNShien.Common.ArchitectureTools;
+using SNShien.Common.ProcessTools;
 
 public class Card
 {

@@ -1,5 +1,4 @@
-using System;
-using SNShien.Common.ArchitectureTools;
+using SNShien.Common.ProcessTools;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

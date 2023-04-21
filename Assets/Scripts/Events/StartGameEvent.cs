@@ -1,4 +1,4 @@
-using SNShien.Common.ArchitectureTools;
+using SNShien.Common.ProcessTools;
 
 namespace GameCore
 {

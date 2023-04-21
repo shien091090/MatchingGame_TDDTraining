@@ -1,5 +1,5 @@
 using GameCore;
-using SNShien.Common.ArchitectureTools;
+using SNShien.Common.ProcessTools;
 using TMPro;
 using UnityEngine;
 using Zenject;
