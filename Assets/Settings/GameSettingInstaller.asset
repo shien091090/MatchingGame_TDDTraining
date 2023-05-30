@@ -17,3 +17,4 @@ MonoBehaviour:
   audioCollection: {fileID: 11400000, guid: 9dbeb1225b763654cadb8f55656bf40b, type: 2}
   audioTriggerEventSetting: {fileID: 11400000, guid: 129cff32b6cc81a49a4f27629acfd2dd, type: 2}
   sceneProcessSetting: {fileID: 11400000, guid: 960f7d133cc77fd4abf64595a063e897, type: 2}
+  loadAssetSetting: {fileID: 11400000, guid: 0ede3231e6eb7a24282de48a89f9e692, type: 2}

@@ -1,3 +1,4 @@
+using SNShien.Common.AssetTools;
 using SNShien.Common.AudioTools;
 using SNShien.Common.ProcessTools;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace GameCore
         [SerializeField] private FmodAudioCollectionScriptableObject audioCollection;
         [SerializeField] private AudioTriggerEventScriptableObject audioTriggerEventSetting;
         [SerializeField] private SceneProcessScriptableObject sceneProcessSetting;
+        [SerializeField] private LoadAssetScriptableObject loadAssetSetting;
 
         public override void InstallBindings()
         {
@@ -21,7 +23,9 @@ namespace GameCore
             Container.BindInstance<ISceneProcessSetting>(sceneProcessSetting);
             Container.Bind<IGameSetting>().FromInstance(gameExternalSetting);
             Container.Bind<IPatternSetting>().FromInstance(patternSetting);
+            Container.Bind<ILoadAssetSetting>().FromInstance(loadAssetSetting);
             Container.Bind<IAudioManager>().To<FmodAudioManager>().AsSingle();
         }
     }
+
 }
