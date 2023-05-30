@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 603983580443723924}
   - component: {fileID: 603983580443723927}
   m_Layer: 0
-  m_Name: MachingGameView
+  m_Name: MatchingGameView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
