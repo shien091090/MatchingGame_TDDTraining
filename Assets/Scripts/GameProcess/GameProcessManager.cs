@@ -1,3 +1,4 @@
+using SNShien.Common.AssetTools;
 using SNShien.Common.AudioTools;
 using SNShien.Common.ProcessTools;
 using UnityEngine;
@@ -7,12 +8,13 @@ namespace GameCore
 {
     public class GameProcessManager : MonoBehaviour
     {
-        [SerializeField] private AudioAutoTriggerComponent audioAutoTriggerControllerPrefab;
-        [SerializeField] private MatchingGameView matchingGameViewPrefab;
+        // [SerializeField] private AudioAutoTriggerComponent audioAutoTriggerControllerPrefab;
+        // [SerializeField] private MatchingGameView matchingGameViewPrefab;
         [Inject] private CardManager cardManager;
         [Inject] private IGameSetting gameExternalSetting;
         [Inject] private IAudioManager audioManager;
         [Inject] private IEventRegister eventRegister;
+        [Inject] private IAssetManager assetManager;
         private MatchingGameView matchingGameView;
         private AudioAutoTriggerComponent audioAutoTriggerComponent;
 
@@ -30,7 +32,9 @@ namespace GameCore
 
         private void InitScene()
         {
+            AudioAutoTriggerComponent audioAutoTriggerControllerPrefab = assetManager.GetAsset<AudioAutoTriggerComponent>("AudioAutoTriggerController");
             audioAutoTriggerComponent = Instantiate(audioAutoTriggerControllerPrefab);
+            MatchingGameView matchingGameViewPrefab = assetManager.GetAsset<MatchingGameView>("MatchingGameView");
             matchingGameView = Instantiate(matchingGameViewPrefab);
         }
 
