@@ -16,4 +16,8 @@ MonoBehaviour:
   - Assets/Prefab/AudioAutoTriggerController.prefab
   - Assets/Prefab/Card.prefab
   - Assets/Prefab/MatchingGameView.prefab
-  loadScriptableObjectNames: []
+  loadScriptableObjectNames:
+  - Assets/Settings/GameSetting.asset
+  - Assets/Settings/PatternSetting.asset
+  - Assets/Settings/AudioCollectionSetting.asset
+  - Assets/Settings/AudioTriggerEventSetting.asset

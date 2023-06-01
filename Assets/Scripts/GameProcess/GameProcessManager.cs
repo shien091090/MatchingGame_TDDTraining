@@ -8,8 +8,6 @@ namespace GameCore
 {
     public class GameProcessManager : MonoBehaviour
     {
-        // [SerializeField] private AudioAutoTriggerComponent audioAutoTriggerControllerPrefab;
-        // [SerializeField] private MatchingGameView matchingGameViewPrefab;
         [Inject] private CardManager cardManager;
         [Inject] private IGameSetting gameExternalSetting;
         [Inject] private IAudioManager audioManager;
@@ -33,9 +31,9 @@ namespace GameCore
         private void InitScene()
         {
             AudioAutoTriggerComponent audioAutoTriggerControllerPrefab = assetManager.GetAsset<AudioAutoTriggerComponent>("AudioAutoTriggerController");
-            audioAutoTriggerComponent = Instantiate(audioAutoTriggerControllerPrefab);
+            audioAutoTriggerComponent = Instantiate(audioAutoTriggerControllerPrefab, transform);
             MatchingGameView matchingGameViewPrefab = assetManager.GetAsset<MatchingGameView>("MatchingGameView");
-            matchingGameView = Instantiate(matchingGameViewPrefab);
+            matchingGameView = Instantiate(matchingGameViewPrefab, transform);
         }
 
         private void SetEventRegister()

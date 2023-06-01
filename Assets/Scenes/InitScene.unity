@@ -205,8 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers:
-  - {fileID: 11400000, guid: a7783fe2cb9c2ee468d3b5235d341795, type: 2}
+  _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1076599095}
   _installerPrefabs: []
@@ -271,6 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   processManager: {fileID: 843704126}
+  sceneProcessSetting: {fileID: 11400000, guid: 960f7d133cc77fd4abf64595a063e897, type: 2}
+  loadAssetSetting: {fileID: 11400000, guid: 0ede3231e6eb7a24282de48a89f9e692, type: 2}
+  audioTriggerEventSetting: {fileID: 11400000, guid: 129cff32b6cc81a49a4f27629acfd2dd, type: 2}
 --- !u!4 &1076599096
 Transform:
   m_ObjectHideFlags: 0
