@@ -823,6 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetButton: {fileID: 5018122262533735895}
+  cardHolderAutoLayout: {fileID: 603983579350834495}
   delaySettleTimes: 2
   delayPlaySettleSoundTimes: 1
   delayPlaySettleBgmTimes: 3

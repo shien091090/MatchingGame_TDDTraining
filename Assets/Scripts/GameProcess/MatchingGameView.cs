@@ -18,6 +18,7 @@ namespace GameCore
         [Inject] private IEventRegister eventRegister;
         [Inject] private CardManager cardManager;
         [SerializeField] private ResetButton resetButton;
+        [SerializeField] private CardHolderAutoLayout cardHolderAutoLayout;
         [SerializeField] private float delaySettleTimes;
         [SerializeField] private float delayPlaySettleSoundTimes;
         [SerializeField] private float delayPlaySettleBgmTimes;
@@ -80,6 +81,8 @@ namespace GameCore
                 cardObj.SetCardInfo(card.number, presenter);
                 cardObj.Show();
             }
+
+            cardHolderAutoLayout.SetupGridLayout(cardManager.GetAllCards.Count);
         }
 
         private void SetEventRegister()
