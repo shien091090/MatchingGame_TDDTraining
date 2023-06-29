@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b12f014e3f94611be4603c17c081928, type: 3}
   m_Name: AudioCollectionSetting
   m_EditorClassIdentifier: 
+  loadBankNameList:
+  - Master.strings
+  - Master
   audioEventRefList:
   - audioKey: bgm_game
     audioEventReferences:
@@ -53,5 +56,3 @@ MonoBehaviour:
         Data3: -554605633
         Data4: 63048421
       Path: event:/GameSettle
-  loadBankNameList:
-  - Master

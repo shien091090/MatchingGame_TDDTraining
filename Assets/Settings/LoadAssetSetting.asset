@@ -21,3 +21,6 @@ MonoBehaviour:
   - Assets/Settings/PatternSetting.asset
   - Assets/Settings/AudioCollectionSetting.asset
   - Assets/Settings/AudioTriggerEventSetting.asset
+  loadOtherAssetNames:
+  - Assets/Audios/FMODBanks/Master.bytes
+  - Assets/Audios/FMODBanks/Master.strings.bytes
