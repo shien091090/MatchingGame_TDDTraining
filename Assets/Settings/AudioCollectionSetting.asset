@@ -53,3 +53,5 @@ MonoBehaviour:
         Data3: -554605633
         Data4: 63048421
       Path: event:/GameSettle
+  loadBankNameList:
+  - Master
