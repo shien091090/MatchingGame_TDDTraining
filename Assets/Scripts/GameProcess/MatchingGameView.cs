@@ -67,14 +67,15 @@ namespace GameCore
 
         public void HideAllCards()
         {
-            cardObjPool.HideAllCards(PREFAB_KEY);
+            cardObjPool.HideAll(PREFAB_KEY);
         }
 
         public void CreateCardPrefab(CardPresenter presenter)
         {
             foreach (Card card in cardManager.GetAllCards)
             {
-                CardView cardObj = cardObjPool.PickUpObject<CardView>(PREFAB_KEY);
+                GameObject go = cardObjPool.PickUpObject(PREFAB_KEY);
+                CardView cardObj = go.GetComponent<CardView>();
                 if (cardObj == null)
                     continue;
 
