@@ -1,3 +1,4 @@
+using FMODUnity;
 using SNShien.Common.AssetTools;
 using SNShien.Common.AudioTools;
 using SNShien.Common.ProcessTools;
@@ -13,6 +14,7 @@ namespace GameCore
         [Inject] private IAudioManager audioManager;
         [Inject] private IEventRegister eventRegister;
         [Inject] private IAssetManager assetManager;
+        [Inject] private IAudioCollection audioCollection;
         private MatchingGameView matchingGameView;
         private AudioAutoTriggerComponent audioAutoTriggerComponent;
 
@@ -30,9 +32,12 @@ namespace GameCore
 
         private void InitScene()
         {
-            AudioAutoTriggerComponent audioAutoTriggerControllerPrefab = assetManager.GetAsset<AudioAutoTriggerComponent>("AudioAutoTriggerController");
+            AudioAutoTriggerComponent audioAutoTriggerControllerPrefab = assetManager.GetAsset<AudioAutoTriggerComponent>(AssetNameConst.AUDIO_AUTO_TRIGGER_CONTROLLER);
             audioAutoTriggerComponent = Instantiate(audioAutoTriggerControllerPrefab, transform);
-            MatchingGameView matchingGameViewPrefab = assetManager.GetAsset<MatchingGameView>("MatchingGameView");
+
+            audioManager.InitCollectionFromBundle(audioCollection, FmodAudioInitType.FromSetting);
+            
+            MatchingGameView matchingGameViewPrefab = assetManager.GetAsset<MatchingGameView>(AssetNameConst.MATCHING_GAME_VIEW);
             matchingGameView = Instantiate(matchingGameViewPrefab, transform);
         }
 

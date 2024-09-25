@@ -7,14 +7,15 @@ namespace GameCore
     public class GameSceneInstaller : MonoInstaller
     {
         [Inject] private IAssetManager assetManager;
-        
+
         public override void InstallBindings()
         {
-            GameSettingScriptableObject gameExternalSetting = assetManager.GetAsset<GameSettingScriptableObject>("GameSetting");
-            PatternSettingScriptableObject patternSetting = assetManager.GetAsset<PatternSettingScriptableObject>("PatternSetting");
-            FmodAudioCollectionScriptableObject audioCollection = assetManager.GetAsset<FmodAudioCollectionScriptableObject>("AudioCollectionSetting");
-            AudioTriggerEventScriptableObject audioTriggerEventSetting = assetManager.GetAsset<AudioTriggerEventScriptableObject>("AudioTriggerEventSetting");
-            
+            GameSettingScriptableObject gameExternalSetting = assetManager.GetAsset<GameSettingScriptableObject>(AssetNameConst.GAME_SETTING);
+            PatternSettingScriptableObject patternSetting = assetManager.GetAsset<PatternSettingScriptableObject>(AssetNameConst.PATTERN_SETTING);
+            FmodAudioCollectionScriptableObject audioCollection = assetManager.GetAsset<FmodAudioCollectionScriptableObject>(AssetNameConst.AUDIO_COLLECTION_SETTING);
+            AudioTriggerEventScriptableObject audioTriggerEventSetting =
+                assetManager.GetAsset<AudioTriggerEventScriptableObject>(AssetNameConst.AUDIO_TRIGGER_EVENT_SETTING);
+
             Container.BindInstance(patternSetting);
             Container.Bind<IAudioCollection>().FromInstance(audioCollection);
             Container.Bind<IAudioTriggerEventSetting>().FromInstance(audioTriggerEventSetting);
