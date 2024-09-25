@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 850b77318bb547109165882db7d91d12, type: 3}
+  m_Script: {fileID: 11500000, guid: 737f23af2295f1348a55abec382dba4c, type: 3}
   m_Name: AudioTriggerEventSetting
   m_EditorClassIdentifier: 
   serializationData:
@@ -22,16 +22,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   audioEventCollections:
-  - triggerEventName: SwitchCoverStateEvent
-    actionType: 0
-    audioEventReference:
-      Guid:
-        Data1: -1825325780
-        Data2: 1319013428
-        Data3: 2136559491
-        Data4: -1703178394
-      Path: event:/FlopCard
-    trackIndex: 0
   - triggerEventName: PlayCardMatchEffectEvent
     actionType: 0
     audioEventReference:
@@ -40,5 +30,15 @@ MonoBehaviour:
         Data2: 1317997401
         Data3: -1470553462
         Data4: -1526080587
-      Path: event:/CardMatch
+      Path: event:/MatchingGame/CardMatch
+    trackIndex: 0
+  - triggerEventName: SwitchCoverStateEvent
+    actionType: 0
+    audioEventReference:
+      Guid:
+        Data1: -1825325780
+        Data2: 1319013428
+        Data3: 2136559491
+        Data4: -1703178394
+      Path: event:/MatchingGame/FlopCard
     trackIndex: 0

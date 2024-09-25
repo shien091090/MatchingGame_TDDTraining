@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b12f014e3f94611be4603c17c081928, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c897c0f92e70b14ba33b72f77ff1efd, type: 3}
   m_Name: AudioCollectionSetting
   m_EditorClassIdentifier: 
-  loadBankNameList:
-  - Master.strings
-  - Master
+  bankAssetNameList:
+  - Assets/Audios/FMODBanks/Master.bytes
+  - Assets/Audios/FMODBanks/Master.strings.bytes
+  - Assets/Audios/FMODBanks/MatchingGame.bytes
   audioEventRefList:
   - audioKey: bgm_game
     audioEventReferences:
@@ -23,7 +24,7 @@ MonoBehaviour:
         Data2: 1116826457
         Data3: 237033621
         Data4: 965782975
-      Path: event:/BGM_Game
+      Path: event:/MatchingGame/BGM_Game
   - audioKey: bgm_settle
     audioEventReferences:
     - Guid:
@@ -31,23 +32,7 @@ MonoBehaviour:
         Data2: 1328167572
         Data3: 289165705
         Data4: -929933247
-      Path: event:/BGM_Settle
-  - audioKey: flop_card
-    audioEventReferences:
-    - Guid:
-        Data1: -1825325780
-        Data2: 1319013428
-        Data3: 2136559491
-        Data4: -1703178394
-      Path: event:/FlopCard
-  - audioKey: card_match
-    audioEventReferences:
-    - Guid:
-        Data1: 1937655913
-        Data2: 1317997401
-        Data3: -1470553462
-        Data4: -1526080587
-      Path: event:/CardMatch
+      Path: event:/MatchingGame/BGM_Settle
   - audioKey: game_settle
     audioEventReferences:
     - Guid:
@@ -55,4 +40,20 @@ MonoBehaviour:
         Data2: 1140689760
         Data3: -554605633
         Data4: 63048421
-      Path: event:/GameSettle
+      Path: event:/MatchingGame/GameSettle
+  - audioKey: flop_card
+    audioEventReferences:
+    - Guid:
+        Data1: -1825325780
+        Data2: 1319013428
+        Data3: 2136559491
+        Data4: -1703178394
+      Path: event:/MatchingGame/FlopCard
+  - audioKey: card_match
+    audioEventReferences:
+    - Guid:
+        Data1: 1937655913
+        Data2: 1317997401
+        Data3: -1470553462
+        Data4: -1526080587
+      Path: event:/MatchingGame/CardMatch
