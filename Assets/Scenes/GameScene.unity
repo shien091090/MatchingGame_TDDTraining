@@ -152,10 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b188efa12b84ef79af774a144579fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameExternalSetting: {fileID: 11400000, guid: ea659ddfc0ab03540b444e7a82d4e082, type: 2}
-  patternSetting: {fileID: 11400000, guid: 8a5a3635dc166124a9d5a0b7c0fcbb66, type: 2}
-  audioCollection: {fileID: 11400000, guid: 9dbeb1225b763654cadb8f55656bf40b, type: 2}
-  audioTriggerEventSetting: {fileID: 11400000, guid: 129cff32b6cc81a49a4f27629acfd2dd, type: 2}
+  addressableAssetSettings: {fileID: 11400000, guid: 716957250502e9b43a49d3b716b91636, type: 2}
 --- !u!4 &71076139
 Transform:
   m_ObjectHideFlags: 0

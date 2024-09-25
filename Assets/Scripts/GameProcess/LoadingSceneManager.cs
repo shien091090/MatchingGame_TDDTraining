@@ -19,7 +19,7 @@ namespace GameCore
         private void Start()
         {
             SetEventRegister(true);
-            assetManager.StartLoadAsset();
+            assetManager.StartPrecedingProcedures();
         }
 
         private void OnUpdateLoadingProgress(LoadingProgress progressInfo)
@@ -51,7 +51,7 @@ namespace GameCore
             sld_loadingProgress.value = progressInfo.GetCompletedPercent;
             txt_loadingProgress.text = progressInfo.GetCompletedPercentText;
             txt_loadingCaption.text = ConvertLoadingCaptionText(progressInfo.LoadedCount);
-            txt_loadingAssetHint.text = progressInfo.AssetName;
+            txt_loadingAssetHint.text = progressInfo.CurrentLoadedAssetName;
         }
 
         private void SwitchToNextScene()
