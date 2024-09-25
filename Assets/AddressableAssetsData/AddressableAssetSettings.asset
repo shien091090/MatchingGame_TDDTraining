@@ -21,6 +21,7 @@ MonoBehaviour:
   m_IgnoreUnsupportedFilesInBuild: 0
   m_UniqueBundleIds: 0
   m_NonRecursiveBuilding: 0
+  m_CCDEnabled: 0
   m_maxConcurrentWebRequests: 500
   m_ContiguousBundles: 0
   m_StripUnityVersionFromBundleBuild: 0
@@ -34,6 +35,7 @@ MonoBehaviour:
   m_RemoteCatalogLoadPath:
     m_Id: 8162afb28da5cbf4b90a7122fbee2c58
   m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 2
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: 096e5d557bdf85242ba7128dec923538, type: 2}
@@ -109,6 +111,8 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - ExternalSetting
+    - FmodAudio
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 679bf5510c9e68c4298c89d8bba83472, type: 2}
@@ -122,7 +126,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3bb6e5d57d1cfa4986c352ae4621150, type: 2}
   - {fileID: 11400000, guid: 8fb291865e750614d94e7af7bb657fb1, type: 2}
   - {fileID: 11400000, guid: ffb20654b1bca37479c4cae197d4edfc, type: 2}
-  m_ActiveProfileId: 233b0832d71054e49b6f194522cce120
+  m_ActiveProfileId: 6ae81476d10abad4f889aca0f22701db
   m_HostingServicesManager:
     m_HostingServiceInfos:
     - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
@@ -139,11 +143,11 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: machinggamebundle.com/StandaloneWindows64
+          m_Data: ServerData/WebGL
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean
-          m_Data: False
+          m_Data: True
           m_Key: IsEnabled
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
