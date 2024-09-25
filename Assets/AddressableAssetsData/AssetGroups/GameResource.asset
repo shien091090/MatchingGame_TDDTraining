@@ -49,10 +49,11 @@ MonoBehaviour:
     m_Address: Assets/Prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 603fc68d74de21b45bcb94dcb30b04d0
+  - m_GUID: ea30d25cd764c3148a91ecfa8cb3b0dd
     m_Address: Assets/Audios
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - FmodAudio
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 716957250502e9b43a49d3b716b91636, type: 2}
   m_SchemaSet:

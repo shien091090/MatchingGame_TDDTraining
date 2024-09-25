@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: a6fb0a2b782a3824a83e564b8919792f
     m_Address: Assets/Settings
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ExternalSetting
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 716957250502e9b43a49d3b716b91636, type: 2}
   m_SchemaSet:

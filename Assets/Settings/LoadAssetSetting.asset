@@ -12,15 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2749a1d507d243148c8d8d3acc33af16, type: 3}
   m_Name: LoadAssetSetting
   m_EditorClassIdentifier: 
-  loadPrefabName:
+  loadAssetNames:
   - Assets/Prefab/AudioAutoTriggerController.prefab
   - Assets/Prefab/Card.prefab
   - Assets/Prefab/MatchingGameView.prefab
-  loadScriptableObjectNames:
-  - Assets/Settings/GameSetting.asset
-  - Assets/Settings/PatternSetting.asset
-  - Assets/Settings/AudioCollectionSetting.asset
-  - Assets/Settings/AudioTriggerEventSetting.asset
-  loadOtherAssetNames:
-  - Assets/Audios/FMODBanks/Master.bytes
-  - Assets/Audios/FMODBanks/Master.strings.bytes
+  loadAssetLabels:
+  - ExternalSetting
+  - FmodAudio
