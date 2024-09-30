@@ -10046,9 +10046,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img_pattern: {fileID: 4420159948417414347}
-  delayCoverTimes: 1.3
-  normalFrozeTimes: 0.3
-  notMatchFrozeTimes: 1.5
   go_matchEffect: {fileID: 122809844633808716}
 --- !u!114 &7437717490818063035
 MonoBehaviour:

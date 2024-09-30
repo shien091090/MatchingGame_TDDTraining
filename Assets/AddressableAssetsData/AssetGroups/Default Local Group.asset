@@ -16,7 +16,31 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 1fe40e56afcc4bc4bba90b3d9e094285
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: c14614e107eae754b874be1dc7acc3a1
+    m_Address: Assets/Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cfaf434d279b0a94a950ba5ee7bc1c06
+    m_Address: Assets/Animator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 528b5686806de0441b019eb33fb27b60
+    m_Address: Assets/Fonts
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 30a9c3b5e8b02c74cb2f4a96ed3a6806
+    m_Address: Assets/Materials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 79a46735195ef0a42ac5302684a19743
+    m_Address: Assets/Scenes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca69dad3782a675409b3189a694ce996
+    m_Address: Assets/Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 716957250502e9b43a49d3b716b91636, type: 2}
   m_SchemaSet:

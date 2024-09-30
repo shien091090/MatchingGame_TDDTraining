@@ -17,34 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 28436335875918f4eb18498e7110be9a
   m_SerializeEntries:
-  - m_GUID: cfaf434d279b0a94a950ba5ee7bc1c06
-    m_Address: Assets/Animator
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c14614e107eae754b874be1dc7acc3a1
-    m_Address: Assets/Atlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bd9d1d014bf0b14428db03b2527d2d93
-    m_Address: Assets/CFXR Assets
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 528b5686806de0441b019eb33fb27b60
-    m_Address: Assets/Fonts
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 30a9c3b5e8b02c74cb2f4a96ed3a6806
-    m_Address: Assets/Materials
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 79a46735195ef0a42ac5302684a19743
-    m_Address: Assets/Scenes
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e9a885dfeb057fa49a5566c9ddbdf91a
-    m_Address: Assets/Textures/ParticleEffect
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: ddf78414d27acd541ac0da550bf21533
     m_Address: Assets/Prefab
     m_ReadOnly: 0

@@ -19,3 +19,4 @@ MonoBehaviour:
   loadAssetLabels:
   - ExternalSetting
   - FmodAudio
+  - Common

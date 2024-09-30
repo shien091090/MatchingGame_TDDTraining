@@ -74,7 +74,7 @@ MonoBehaviour:
       - m_Id: 32e9e840545c5564db3296fd0e8fd9fc
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 99d61366fb3e2104d84f598008c69240
-        m_Value: machinggamebundle.com/[BuildTarget]
+        m_Value: ServerData/[BuildTarget]
       - m_Id: 8162afb28da5cbf4b90a7122fbee2c58
         m_Value: https://s3.ap-northeast-1.amazonaws.com/machinggamebundle.com/[BuildTarget]
     - m_InheritedParent: 
@@ -113,6 +113,7 @@ MonoBehaviour:
     - default
     - ExternalSetting
     - FmodAudio
+    - Common
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 679bf5510c9e68c4298c89d8bba83472, type: 2}
@@ -126,7 +127,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3bb6e5d57d1cfa4986c352ae4621150, type: 2}
   - {fileID: 11400000, guid: 8fb291865e750614d94e7af7bb657fb1, type: 2}
   - {fileID: 11400000, guid: ffb20654b1bca37479c4cae197d4edfc, type: 2}
-  m_ActiveProfileId: 6ae81476d10abad4f889aca0f22701db
+  m_ActiveProfileId: 233b0832d71054e49b6f194522cce120
   m_HostingServicesManager:
     m_HostingServiceInfos:
     - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
@@ -147,7 +148,7 @@ MonoBehaviour:
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean
-          m_Data: True
+          m_Data: False
           m_Key: IsEnabled
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
