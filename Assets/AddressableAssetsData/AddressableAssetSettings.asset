@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
   m_DefaultGroup: 1fe40e56afcc4bc4bba90b3d9e094285
+  m_currentHash:
+    serializedVersion: 2
+    Hash: 8e8dce1f025acae1bf0d84506f26c055
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -29,19 +32,22 @@ MonoBehaviour:
   m_ShaderBundleNaming: 0
   m_ShaderBundleCustomNaming: 
   m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
     m_Id: 99d61366fb3e2104d84f598008c69240
   m_RemoteCatalogLoadPath:
     m_Id: 8162afb28da5cbf4b90a7122fbee2c58
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
+  m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 2
   m_overridePlayerVersion: 
   m_GroupAssets:
-  - {fileID: 11400000, guid: 096e5d557bdf85242ba7128dec923538, type: 2}
   - {fileID: 11400000, guid: d23d107ce665ff54ca372fab8ad33dce, type: 2}
-  - {fileID: 11400000, guid: 8e342fa11842a654c96d7f3745d437e7, type: 2}
   - {fileID: 11400000, guid: 1ec3420346d37ea4b9ea47fc6d3ffabb, type: 2}
+  - {fileID: 11400000, guid: 8e342fa11842a654c96d7f3745d437e7, type: 2}
+  - {fileID: 11400000, guid: 096e5d557bdf85242ba7128dec923538, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -50,62 +56,62 @@ MonoBehaviour:
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-      m_Id: ee36cdde290927b499d7a0eb7546dacb
-      m_ProfileName: Default
-      m_Values:
-      - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: 1e86561b4aa1429468ea7620ca10c834
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 32e9e840545c5564db3296fd0e8fd9fc
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 99d61366fb3e2104d84f598008c69240
-        m_Value: ServerData/[BuildTarget]
-      - m_Id: 8162afb28da5cbf4b90a7122fbee2c58
-        m_Value: https://s3.ap-northeast-1.amazonaws.com/machinggamebundle.com/[BuildTarget]
-    - m_InheritedParent: 
       m_Id: 233b0832d71054e49b6f194522cce120
       m_ProfileName: AWSPath
       m_Values:
-      - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 1e86561b4aa1429468ea7620ca10c834
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 32e9e840545c5564db3296fd0e8fd9fc
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 99d61366fb3e2104d84f598008c69240
-        m_Value: ServerData/[BuildTarget]
+      - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 8162afb28da5cbf4b90a7122fbee2c58
         m_Value: https://s3.ap-northeast-1.amazonaws.com/machinggamebundle.com/[BuildTarget]
+      - m_Id: 99d61366fb3e2104d84f598008c69240
+        m_Value: ServerData/[BuildTarget]
     - m_InheritedParent: 
       m_Id: 6ae81476d10abad4f889aca0f22701db
       m_ProfileName: LocalTestPath
       m_Values:
-      - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 1e86561b4aa1429468ea7620ca10c834
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 32e9e840545c5564db3296fd0e8fd9fc
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 99d61366fb3e2104d84f598008c69240
-        m_Value: ServerData/[BuildTarget]
+      - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 8162afb28da5cbf4b90a7122fbee2c58
         m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+      - m_Id: 99d61366fb3e2104d84f598008c69240
+        m_Value: ServerData/[BuildTarget]
+    - m_InheritedParent: 
+      m_Id: ee36cdde290927b499d7a0eb7546dacb
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: 1e86561b4aa1429468ea7620ca10c834
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 32e9e840545c5564db3296fd0e8fd9fc
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 8162afb28da5cbf4b90a7122fbee2c58
+        m_Value: https://s3.ap-northeast-1.amazonaws.com/machinggamebundle.com/[BuildTarget]
+      - m_Id: 99d61366fb3e2104d84f598008c69240
+        m_Value: ServerData/[BuildTarget]
     m_ProfileEntryNames:
-    - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
-      m_Name: BuildTarget
-      m_InlineUsage: 0
     - m_Id: 1e86561b4aa1429468ea7620ca10c834
       m_Name: LocalBuildPath
       m_InlineUsage: 0
     - m_Id: 32e9e840545c5564db3296fd0e8fd9fc
       m_Name: LocalLoadPath
       m_InlineUsage: 0
-    - m_Id: 99d61366fb3e2104d84f598008c69240
-      m_Name: RemoteBuildPath
+    - m_Id: 7a1fac6575f402e4b8fd7da14566c34b
+      m_Name: BuildTarget
       m_InlineUsage: 0
     - m_Id: 8162afb28da5cbf4b90a7122fbee2c58
       m_Name: RemoteLoadPath
+      m_InlineUsage: 0
+    - m_Id: 99d61366fb3e2104d84f598008c69240
+      m_Name: RemoteBuildPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
@@ -162,3 +168,4 @@ MonoBehaviour:
     m_NextInstanceId: 1
     m_RegisteredServiceTypeRefs:
     - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor
+    m_PingTimeoutInMilliseconds: 5000
