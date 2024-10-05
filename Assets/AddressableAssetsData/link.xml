@@ -3,6 +3,8 @@
     <type fullname="CloseButtonUI" preserve="all" />
     <type fullname="GameCore.CardHolderAutoLayout" preserve="all" />
     <type fullname="GameCore.CardView" preserve="all" />
+    <type fullname="GameCore.GameProcessManager" preserve="all" />
+    <type fullname="GameCore.GameSceneInstaller" preserve="all" />
     <type fullname="GameCore.GameSettingScriptableObject" preserve="all" />
     <type fullname="GameCore.MatchingGameView" preserve="all" />
     <type fullname="GameCore.PatternSettingScriptableObject" preserve="all" />
@@ -23,25 +25,46 @@
     <type fullname="CartoonFX.CFXR_Effect" preserve="all" />
     <type fullname="CartoonFX.CFXR_Effect/CameraShake" preserve="nothing" serialized="true" />
   </assembly>
+  <assembly fullname="FMODUnity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="FMODUnity.StudioListener" preserve="all" />
+    <type fullname="FMOD.GUID" preserve="nothing" serialized="true" />
+    <type fullname="FMODUnity.EventReference" preserve="nothing" serialized="true" />
+  </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Postprocessing.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Rendering.PostProcessing.Bloom" preserve="all" />
     <type fullname="UnityEngine.Rendering.PostProcessing.ColorGrading" preserve="all" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessLayer" preserve="all" />
     <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessProfile" preserve="all" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessResources" preserve="all" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessVolume" preserve="all" />
     <type fullname="UnityEngine.Rendering.PostProcessing.Vignette" preserve="all" />
     <type fullname="UnityEngine.Rendering.PostProcessing.BoolParameter" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.ColorParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.FastApproximateAntialiasing" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.FloatParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.Fog" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.GradingModeParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.HistogramMonitor" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.LightMeterMonitor" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer/OverlaySettings" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessResources/ComputeShaders" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessResources/SMAALuts" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessResources/Shaders" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.Spline" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.SplineParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.TemporalAntialiasing" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.TextureParameter" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.TonemapperParameter" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.Vector2Parameter" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.Vector4Parameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.VectorscopeMonitor" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.PostProcessing.VignetteModeParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.PostProcessing.WaveformMonitor" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
@@ -68,11 +91,17 @@
     <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.ComputeShader" preserve="all" />
+    <type fullname="UnityEngine.Cubemap" preserve="all" />
     <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Light" preserve="all" />
+    <type fullname="UnityEngine.LightmapSettings" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
     <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.RenderSettings" preserve="all" />
     <type fullname="UnityEngine.Shader" preserve="all" />
     <type fullname="UnityEngine.Sprite" preserve="all" />
     <type fullname="UnityEngine.TextAsset" preserve="all" />
@@ -83,12 +112,15 @@
     <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.PersistentListenerMode" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.UnityEvent" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.ParticleSystem" preserve="all" />
     <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.EventSystems.EventSystem" preserve="all" />
+    <type fullname="UnityEngine.EventSystems.StandaloneInputModule" preserve="all" />
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
     <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
@@ -107,11 +139,8 @@
     <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
   </assembly>
   <assembly fullname="Zenject, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Zenject.SceneContext" preserve="all" />
     <type fullname="Zenject.ZenAutoInjecter" preserve="all" />
-  </assembly>
-  <assembly fullname="FMODUnity">
-    <type fullname="FMOD.GUID" preserve="nothing" serialized="true" />
-    <type fullname="FMODUnity.EventReference" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Sirenix.Serialization">
     <type fullname="Sirenix.Serialization.SerializationData" preserve="nothing" serialized="true" />

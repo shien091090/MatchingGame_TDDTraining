@@ -17,15 +17,28 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 28436335875918f4eb18498e7110be9a
   m_SerializeEntries:
+  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
+    m_Address: Assets/Scenes/GameScene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c14614e107eae754b874be1dc7acc3a1
+    m_Address: Assets/Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ddf78414d27acd541ac0da550bf21533
     m_Address: Assets/Prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Prefab
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea30d25cd764c3148a91ecfa8cb3b0dd
     m_Address: Assets/Audios
     m_ReadOnly: 0
     m_SerializedLabels:
     - FmodAudio
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 716957250502e9b43a49d3b716b91636, type: 2}
   m_SchemaSet:
